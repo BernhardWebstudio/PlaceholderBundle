@@ -27,6 +27,9 @@
 !bin/console
 !bin/symfony_requirements
 
+# Managed by NPM
+/node_modules/
+
 # Assets and user uploads
 /web/bundles/
 /web/uploads/
@@ -40,3 +43,6 @@
 
 # Backup entities generated with doctrine:generate:entities command
 **/Entity/*~
+
+# IDEs
+.vscode/
