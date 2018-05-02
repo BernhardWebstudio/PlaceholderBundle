@@ -11,6 +11,7 @@ class SqipPlaceholderGenerator implements PlaceholderGeneratorInterface {
     protected $iterations = 5;
 
     public function generate($input, $output) {
+        // maybe, the image should be resized before being processed
         $process = new Process(array($this->bin, '-n', $this->iterations, '-o', $output, $input));
         $process->mustRun();
         return $process->getOutput();
