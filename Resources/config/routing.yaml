@@ -1,0 +1,3 @@
+bewe_placeholder_routes:
+    resource: BernhardWebstudio\PlaceholderBundle\Controller\PlaceholderProviderController
+    type: annotation

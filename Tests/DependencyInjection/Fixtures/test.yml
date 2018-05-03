@@ -1,0 +1,4 @@
+bewe_placeholder:
+  bin: sqip
+  service: bewe_placeholder.generator.sqip
+  iterations: 13

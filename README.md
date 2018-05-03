@@ -1,7 +1,21 @@
 # PlaceholderBundle
 
+What is this bundle?
+============
+
+Use this bundle if you are looking for an easy way to generate beautiful placeholders or thumbnails for your project. 
+
+Do you provide a page full of images? Do you use a lazy-loader with a grey-only image? Then this bundle is 
+something for you!
+
+Depending on your configuration and your local environment, you can let the bundle return placeholders generated with 
+[Primitive](https://github.com/fogleman/primitive) or [sqip](https://github.com/technopagan/sqip/blob/master/README.md).
+
 Installation
 ============
+
+You need to have the service installed which you want to use. Refer to their webpages linked above to get the installation guide.
+To install this bundle, refer to the following guide.
 
 Applications that use Symfony Flex
 ----------------------------------
@@ -54,10 +68,27 @@ class AppKernel extends Kernel
 }
 ```
 
-# TODO
+Configuration
+============
 
-- Develop Services
+The standard configuration looks like this:
+
+```yaml
+bewe_placeholder:
+    service: 'bewe.placeholder.generator.primitive'
+    bin: 'primitive'
+    iterations: 10
+```
+
+You can change the service to `bewe.placeholder.generator.sqip` if you prefer to use sqip or even 
+to your own service, as long as it implements `BernardWebstudio\PlaceholderBundle\Services\PlaceholderGeneratorInterface`.
+
+Contributions
+============
+
+Contributions are welcome. Just open a PR!
+
+## TODO
+
 - Develop Twig extension
-- Follow standards: https://symfony.com/doc/current/contributing/code/standards.html
-- Create Tests
 - Create Recipe: https://github.com/symfony/recipes

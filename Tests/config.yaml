@@ -1,0 +1,7 @@
+parameters:
+  kernel.secret: TESTSecret
+
+framework:
+  test: ~
+  router:
+        resource: "%kernel.root_dir%/../Resources/config/routing.yaml"

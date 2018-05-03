@@ -1,0 +1,21 @@
+#!/usr/bin/env php
+<?php
+// application.php
+
+require __DIR__.'/../vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use Symfony\Component\Yaml\Command\LintCommand;
+use BernhardWebstudio\PlaceholderBundle\Tests\AppKernel;
+use Symfony\Bundle\FrameworkBundle\Command\ConfigDebugCommand;
+use Symfony\Bundle\FrameworkBundle\Command\ConfigDumpReferenceCommand;
+
+$kernel = new AppKernel();
+$application = new Application();
+
+// ... register commands
+$application->add(new LintCommand());
+$application->add(new ConfigDebugCommand());
+$application->add(new ConfigDumpReferenceCommand());
+
+$application->run();

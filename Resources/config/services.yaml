@@ -1,17 +1,22 @@
 services:
-    bewe.placeholder.provider:
+    bewe_placeholder.provider:
         class: BernhardWebstudio\PlaceholderBundle\Service\PlaceholderProviderService
         autowire: false
+        public: true
         arguments:
-            - '@bewe.placeholder.generator.sqip'
-            - '@logger'
-    bewe.placeholder.generator.sqip:
+            - '@bewe_placeholder.generator'
+            # - '@logger'
+    bewe_placeholder.generator.sqip:
         class: BernhardWebstudio\PlaceholderBundle\Service\SqipPlaceholderGenerator
+        autowire: false
+        public: true
         arguments:
           - 'sqip'
           - 5
-    bewe.placeholder.generator.primitive:
+    bewe_placeholder.generator.primitive:
         class: BernhardWebstudio\PlaceholderBundle\Service\PrimitivePlaceholderGenerator
+        autowire: false
+        public: true
         arguments:
           - 'primitive'
           - 10

@@ -14,6 +14,7 @@ class PrimitivePlaceholderGenerator extends AbstractNodeExecGenerator
     {
         $this->bin = $bin;
         $this->iterations = $iterations;
+        var_dump("constructed primitive");
     }
 
     public function generate($input, $output)
