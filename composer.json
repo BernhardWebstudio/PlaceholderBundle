@@ -26,7 +26,7 @@
         "symfony/asset": "^4.0"
     },
     "autoload": {
-        "psr-4": { "\\BernhardWebstudio\\PlaceholderBundle": "" }
+        "psr-4": { "\\BernhardWebstudio\\PlaceholderBundle\\": "" }
     },
     "require-dev": {
         "phpunit/phpunit": "^7.1"

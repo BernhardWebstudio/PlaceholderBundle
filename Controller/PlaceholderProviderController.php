@@ -2,9 +2,10 @@
 
 namespace BernhardWebstudio\PlaceholderBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use PlaceholderProviderService;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * @Route(name="bewe_")
@@ -18,24 +19,12 @@ class PlaceholderProviderController extends Controller
      *
      * @Route("/{imagePath}?placeholder=true", name="placeholder", requirements={"imagePath"="*"})
      */
-    public function placeholderAction(Request $request, Packages $assetManager, string $imagePath)
+    public function placeholderAction(Request $request, PlaceholderProviderService $providerService, string $imagePath)
     {
-        $placeholderPath = $this->getOutputPath($imagePath);
-        if (!\file_exists($placeholderPath)) {
-            $placeholderService = $this->get();
-            $placeholderService->generate($imagePath, $placeholderPath);
-        }
+        $placeholderPath = $providerService->getPlaceholder($imagePath);
 
         return $this->file($placeholderPath);
     }
 
-    /**
-     * Get the actual path to a placeholder
-     */
-    protected function getOutputPath(string $filename)
-    {
-        $extension_pos = strrpos($filename, '.'); // find position of the last dot, so where the extension starts
-        $thumb = substr($filename, 0, $extension_pos) . '_thumb' . substr($filename, $extension_pos);
-        return $thumb;
-    }
+    
 }
