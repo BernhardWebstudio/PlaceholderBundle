@@ -2,13 +2,13 @@
 
 namespace BernhardWebstudio\PlaceholderBundle\DependencyInjection;
 
+use BernhardWebstudio\PlaceholderBundle\DependencyInjection\Configuration;
+use BernhardWebstudio\PlaceholderBundle\Service\AbstractNodeExecGenerator;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-use BernhardWebstudio\PlaceholderBundle\DependencyInjection\Configuration;
-use BernhardWebstudio\PlaceholderBundle\Service\AbstractNodeExecGenerator;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class BernhardWebstudioPlaceholderExtension extends Extension
 {
@@ -23,22 +23,25 @@ class BernhardWebstudioPlaceholderExtension extends Extension
 
         $service = $config['service'];
         $serviceDefinition = $container->getDefinition($config['service']);
-        
+
         if (is_subclass_of($serviceDefinition->getClass(), AbstractNodeExecGenerator::class)) {
-            if (($bin = $configs['bin'])) {
+            if (\array_key_exists('bin', $configs)) {
+                $bin = $configs['bin'];
                 $serviceDefinition->replaceArgument(0, $bin);
             }
 
-            if (($iterations = $configs['iterations'])) {
+            if (\array_key_exists('iterations', $configs)) {
+                $iterations = $configs['iterations'];
                 $serviceDefinition->replaceArgument(1, $iterations);
             }
         }
-        
+
         $container->setAlias('bewe_placeholder.generator', new Alias($service, true));
         $container->setParameter($this->getAlias(), $config);
     }
 
-    public function getAlias() {
+    public function getAlias()
+    {
         return "bewe_placeholder";
     }
 }

@@ -2,11 +2,11 @@
 
 namespace BernhardWebstudio\PlaceholderBundle\Controller;
 
-use PlaceholderProviderService;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use BernhardWebstudio\PlaceholderBundle\Service\PlaceholderProviderService;
 
 /**
  * @Route(name="bewe_")

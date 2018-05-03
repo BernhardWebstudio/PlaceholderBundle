@@ -2,12 +2,12 @@
 
 namespace BernhardWebstudio\PlaceholderBundle\Tests\DependencyInjection;
 
+use BernhardWebstudio\PlaceholderBundle\DependencyInjection\BernhardWebstudioPlaceholderExtension;
+use BernhardWebstudio\PlaceholderBundle\DependencyInjection\Configuration;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-use BernhardWebstudio\PlaceholderBundle\DependencyInjection\Configuration;
-use BernhardWebstudio\PlaceholderBundle\DependencyInjection\BernhardWebstudioPlaceholderExtension;
 
 /**
  * Class BernhardWebstudioPlaceholderExtensionTest

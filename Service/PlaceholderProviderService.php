@@ -1,11 +1,12 @@
 <?php
 
-use Psr\Log\LoggerInterface;
+namespace BernhardWebstudio\PlaceholderBundle\Service;
+
 use BernhardWebstudio\PlaceholderBundle\Service\PlaceholderGeneratorInterface;
+use Psr\Log\LoggerInterface;
 
 class PlaceholderProviderService
 {
-
     protected $generator;
     protected $logger;
 

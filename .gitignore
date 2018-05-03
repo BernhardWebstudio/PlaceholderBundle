@@ -37,9 +37,11 @@
 # PHPUnit
 /app/phpunit.xml
 /phpunit.xml
+/Tests/cache
 
 # Build data
 /build/
+/Tests/Fixtures/*_thumb.*
 
 # Backup entities generated with doctrine:generate:entities command
 **/Entity/*~
