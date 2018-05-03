@@ -14,6 +14,7 @@ class Configuration extends ConfigurationInterface
 
         $rootNode->children()
             ->integerNode('iterations')->defaultValue(5)->end()
+            ->scalarNode('bin')->end()
             ->scalarNode('service')->cannotBeEmpty()->defaultValue('bewe.placeholder.primitive')->end()
             ->end();
 

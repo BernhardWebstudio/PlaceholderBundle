@@ -1,16 +1,23 @@
-<?php 
+<?php
 
 namespace BernhardWebstudio\PlaceholderBundle\Service;
 
 use Symfony\Component\Process\Process;
 
-class PrimitivePlaceholderGenerator implements PlaceholderGeneratorInterface {
+class PrimitivePlaceholderGenerator extends AbstractNodeExecGenerator
+{
 
-    // TODO: accept parameter
     protected $bin = "primitive";
     protected $iterations = 10;
 
-    public function generate($input, $output) {
+    public function __construct($bin = "primitive", $iterations = 10)
+    {
+        $this->bin = $bin;
+        $this->iterations = $iterations;
+    }
+
+    public function generate($input, $output)
+    {
         $process = new Process(array($this->bin, '-i', $input, '-o', $output, '-n', $this->iterations));
         $process->mustRun();
         return $process->getOutput();
