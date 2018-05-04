@@ -65,7 +65,7 @@ class PlaceholderGeneratorServiceTest extends TestCase
         $this->testGenerated($generator);
     }
 
-    protected function testGenerated(PlaceholderGeneratorInterface $generator) {
+    public function testGenerated(PlaceholderGeneratorInterface $generator) {
         $out = $this->testImageOutputPath . ".svg";
         $this->assertFalse(\file_exists($out));
         $generator->generate($this->testImageInputPath, $this->testImageOutputPath);

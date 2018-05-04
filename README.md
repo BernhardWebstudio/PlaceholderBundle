@@ -93,11 +93,16 @@ On this object, call `getPlaceholder($imagepath)` with the path to your image as
 To force generatation of an image, the service `bewe_placeholder.generator` can be used. Pass 
 as arguments the input and the output path to the function `generate($input, $output)`. 
 Be aware that the services do not have to output a file exactly to your output path. 
-Instead, they usally append `.svg`. This is dependent on the service and extension configured 
-as well as on the developer of the service.
+Instead, they usually append `.svg`. This is dependent on the service: call `getOutputExtension` 
+to get the extension.
 
 ## In Twig
 Use the `placeholder` Twig filter. Apply it on the path of your image.
+
+## Just the URL, please
+If you configure to include the routing file provided by this bundle, you can generate 
+a route named `bewe_placeholder` with the parameter `imagePath`. This URL will provide you 
+with the placeholder, default lazyly generated.
 
 Contributions
 ============
@@ -106,6 +111,7 @@ Contributions are welcome. Just open a PR!
 
 ## TODO
 
-- Develop Twig extension
+- Get load paths as parameters
+- Test Twig extension
 - Pre-generate to be requested images
 - Create Recipe: https://github.com/symfony/recipes

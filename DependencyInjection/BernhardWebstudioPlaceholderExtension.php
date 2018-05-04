@@ -21,6 +21,11 @@ class BernhardWebstudioPlaceholderExtension extends Extension
 
         $config = $this->processConfiguration($configuration, $configs);
 
+        if (\array_key_exists('load_paths', $configs)) {
+            $providerDefinition = $container->getDefinition('bewe_placeholder.provider');
+            $providerDefinition->replaceArgument(1, $configs['load_paths']);
+        }
+
         $service = $config['service'];
         $serviceDefinition = $container->getDefinition($config['service']);
 

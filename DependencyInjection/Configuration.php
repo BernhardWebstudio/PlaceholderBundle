@@ -16,9 +16,10 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('bewe_placeholder');
 
         $rootNode->children()
+            ->arrayNode('load_paths')->end()
+            ->scalarNode('service')->cannotBeEmpty()->defaultValue('bewe_placeholder.generator.primitive')->end()
             ->integerNode('iterations')->defaultValue(self::ITERATIONS_DEFAULT)->end()
             ->scalarNode('bin')->end()
-            ->scalarNode('service')->cannotBeEmpty()->defaultValue('bewe_placeholder.generator.primitive')->end()
             ->end();
 
         return $treeBuilder;

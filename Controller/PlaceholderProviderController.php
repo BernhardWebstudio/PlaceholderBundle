@@ -21,16 +21,16 @@ class PlaceholderProviderController extends Controller
      */
     public function placeholderAction(Request $request, string $imagePath)
     {
-        if (!\file_exists($imagePath)) {
-            throw $this->createNotFoundException();
-        }
-
         /**
          * @var PlaceholderProviderService
          */
         $providerService = $this->get('bewe_placeholder.provider');
 
-        $placeholderPath = $providerService->getPlaceholder($imagePath);
+        if (!($input = $providerService->getInputPath($imagePath))) {
+            throw $this->createNotFoundException();
+        }
+
+        $placeholderPath = $providerService->getPlaceholder($input);
 
         return $this->file($placeholderPath);
     }
