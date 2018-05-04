@@ -5,6 +5,7 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use BernhardWebstudio\PlaceholderBundle\Service\SqipPlaceholderGenerator;
+use BernhardWebstudio\PlaceholderBundle\Service\PlaceholderGeneratorInterface;
 use BernhardWebstudio\PlaceholderBundle\Service\PrimitivePlaceholderGenerator;
 use BernhardWebstudio\PlaceholderBundle\DependencyInjection\BernhardWebstudioPlaceholderExtension;
 
@@ -13,11 +14,15 @@ class PlaceholderGeneratorServiceTest extends TestCase
     /**
      * @var BernhardWebstudioPlaceholderExtension
      */
-    private $extension;
+    protected $extension;
     /**
      * @var ContainerBuilder
      */
-    private $container;
+    protected $container;
+
+    protected $testImageInputPath = 'Tests/Fixtures/test.jpg';
+
+    protected $testImageOutputPath = 'Tests/Fixtures/test.jpg.placeholder';
 
     /**
      *
@@ -42,21 +47,29 @@ class PlaceholderGeneratorServiceTest extends TestCase
         $this->container->compile();
     }
 
-    public function testSqipGenerator() {
+    public function testSqipGenerator()
+    {
         $this->loadConfiguration('sqip-test');
         $this->assertTrue($this->container->has('bewe_placeholder.generator'));
         $generator = $this->container->get('bewe_placeholder.generator');
         $this->assertTrue($generator instanceof SqipPlaceholderGenerator);
-
-        // TODO: test return value of ->generate
+        $this->testGenerated($generator);
     }
 
-    public function testPrimitiveGenerator() {
+    public function testPrimitiveGenerator()
+    {
         $this->loadConfiguration('primitive-test');
         $this->assertTrue($this->container->has('bewe_placeholder.generator'));
         $generator = $this->container->get('bewe_placeholder.generator');
         $this->assertTrue($generator instanceof PrimitivePlaceholderGenerator);
+        $this->testGenerated($generator);
+    }
 
-        // TODO: test return value of ->generate
+    protected function testGenerated(PlaceholderGeneratorInterface $generator) {
+        $out = $this->testImageOutputPath . ".svg";
+        $this->assertFalse(\file_exists($out));
+        $generator->generate($this->testImageInputPath, $this->testImageOutputPath);
+        $this->assertTrue(\file_exists($out));
+        \unlink($out);
     }
 }

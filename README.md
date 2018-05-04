@@ -75,13 +75,29 @@ The standard configuration looks like this:
 
 ```yaml
 bewe_placeholder:
-    service: 'bewe.placeholder.generator.primitive'
+    service: 'bewe_placeholder.generator.primitive'
     bin: 'primitive'
     iterations: 10
 ```
 
-You can change the service to `bewe.placeholder.generator.sqip` if you prefer to use sqip or even 
+You can change the service to `bewe_placeholder.generator.sqip` if you prefer to use sqip or even 
 to your own service, as long as it implements `BernardWebstudio\PlaceholderBundle\Services\PlaceholderGeneratorInterface`.
+
+Usage
+============
+
+## In a Controller or Service
+To get the path to a placeholder of an image, request the `bewe_placeholder.provider` service. 
+On this object, call `getPlaceholder($imagepath)` with the path to your image as argument.
+
+To force generatation of an image, the service `bewe_placeholder.generator` can be used. Pass 
+as arguments the input and the output path to the function `generate($input, $output)`. 
+Be aware that the services do not have to output a file exactly to your output path. 
+Instead, they usally append `.svg`. This is dependent on the service and extension configured 
+as well as on the developer of the service.
+
+## In Twig
+Use the `placeholder` Twig filter. Apply it on the path of your image.
 
 Contributions
 ============
@@ -91,4 +107,5 @@ Contributions are welcome. Just open a PR!
 ## TODO
 
 - Develop Twig extension
+- Pre-generate to be requested images
 - Create Recipe: https://github.com/symfony/recipes

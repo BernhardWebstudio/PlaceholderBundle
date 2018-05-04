@@ -16,6 +16,9 @@ class PrimitivePlaceholderGenerator extends AbstractNodeExecGenerator
         $this->iterations = $iterations;
     }
 
+    /**
+     * Run primitive to generate the placeholder svg
+     */
     public function generate($input, $output)
     {
         $process = new Process(array($this->bin, '-i', $input, '-o', "$output.svg", '-n', $this->iterations));
