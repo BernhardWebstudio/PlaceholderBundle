@@ -1,0 +1,4 @@
+bewe_placeholder:
+  bin: primitive
+  service: bewe_placeholder.generator.primitive
+  iterations: 13

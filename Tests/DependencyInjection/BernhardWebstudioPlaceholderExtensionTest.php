@@ -37,13 +37,15 @@ class BernhardWebstudioPlaceholderExtensionTest extends TestCase
     }
 
     /**
-     * @param ContainerBuilder $container
      * @param string           $resource
      */
-    protected function loadConfiguration(ContainerBuilder $container, $resource)
+    protected function loadConfiguration($resource)
     {
-        $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/Fixtures/'));
+        // reset configuration
+        $this->setUp();
+        $loader = new YamlFileLoader($this->container, new FileLocator(__DIR__ . '/Fixtures/'));
         $loader->load($resource . '.yml');
+        $this->container->compile();
     }
 
     /**
@@ -61,18 +63,33 @@ class BernhardWebstudioPlaceholderExtensionTest extends TestCase
     }
 
     /**
-     * Test normal config
+     * Test sqip config
      */
-    public function testTest()
+    public function testSqipConfig()
     {
-        $this->loadConfiguration($this->container, 'test');
-        $this->container->compile();
+        $this->loadConfiguration('sqip-test');
         $this->assertTrue($this->container->hasParameter('bewe_placeholder'));
         $config = $this->container->getParameter('bewe_placeholder');
         $this->assertNotEmpty($config['bin']);
         $this->assertEquals($config['bin'], 'sqip');
         $this->assertNotEmpty($config['service']);
         $this->assertEquals($config['service'], 'bewe_placeholder.generator.sqip');
+        $this->assertNotEmpty($config['iterations']);
+        $this->assertEquals($config['iterations'], 13);
+    }
+
+    /**
+     * Test primitive config
+     */
+    public function testPrimitiveConfig()
+    {
+        $this->loadConfiguration('primitive-test');
+        $this->assertTrue($this->container->hasParameter('bewe_placeholder'));
+        $config = $this->container->getParameter('bewe_placeholder');
+        $this->assertNotEmpty($config['bin']);
+        $this->assertEquals($config['bin'], 'primitive');
+        $this->assertNotEmpty($config['service']);
+        $this->assertEquals($config['service'], 'bewe_placeholder.generator.primitive');
         $this->assertNotEmpty($config['iterations']);
         $this->assertEquals($config['iterations'], 13);
     }
