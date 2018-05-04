@@ -33,23 +33,23 @@ class PlaceholderProviderControllerTest extends WebTestCase
         self::bootKernel();
         $this->client = static::createClient();
         $this->container = $this->client->getContainer();
-
-        //$this->extension = new BernhardWebstudioPlaceholderExtension();
-
-        //$this->container->registerExtension($this->extension);
     }
 
     public function testPlaceholderUnavailableAction()
     {
-        $this->expectException(NotFoundHttpException::class);
-        $response = $this->client->request('GET', '/non-exisitiniging.jpg/placeholder');
-        $this->assertEquals(404, $this->client->getResponse()->getStatusCode());
+        // $this->expectException(NotFoundHttpException::class);
+        try {
+            $this->client->request('GET', '/non-exisitiniging.jpg/placeholder');
+            $this->assertEquals(404, $this->client->getResponse()->getStatusCode());
+        } catch (\Exception $e) {
+            $this->assertTrue($e instanceof NotFoundHttpException);
+        }
     }
 
     public function testPlaceholderAvailableAction()
     {
         $path = 'Tests/Fixtures/test.jpg';
-        $response = $this->client->request('GET', "$path/placeholder");
+        $this->client->request('GET', "$path/placeholder");
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
     }
 

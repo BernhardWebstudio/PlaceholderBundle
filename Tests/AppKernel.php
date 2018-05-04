@@ -2,6 +2,7 @@
 namespace BernhardWebstudio\PlaceholderBundle\Tests;
 
 use Symfony\Component\HttpKernel\Kernel;
+use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -33,6 +34,7 @@ class AppKernel extends Kernel
         parent::__construct($cachePrefix, true);
         $this->cachePrefix = $cachePrefix;
         $this->addBundle(FrameworkBundle::class);
+        $this->addBundle(TwigBundle::class);
         $this->addBundle(BernhardWebstudioPlaceholderBundle::class);
         $this->addConfigFile(__DIR__ . '/config.yaml');
         $this->addConfigFile(__DIR__ . '/../Resources/config/services.yaml');
