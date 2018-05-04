@@ -18,7 +18,7 @@ class PrimitivePlaceholderGenerator extends AbstractNodeExecGenerator
 
     public function generate($input, $output)
     {
-        $process = new Process(array($this->bin, '-i', $input, '-o', $output, '-n', $this->iterations));
+        $process = new Process(array($this->bin, '-i', $input, '-o', "$output.svg", '-n', $this->iterations));
         $process->mustRun();
         return $process->getOutput();
     }

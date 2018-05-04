@@ -32,6 +32,8 @@ class PlaceholderProviderService
     {
         $extension_pos = strrpos($filename, '.'); // find position of the last dot, so where the extension starts
         $thumb = substr($filename, 0, $extension_pos) . '_thumb' . substr($filename, $extension_pos);
-        return $thumb;
+        // let the service add a custom extension
+        $files = glob("$thumb*");
+        return count($files) === 1 ? $files[0] : $thumb;
     }
 }
