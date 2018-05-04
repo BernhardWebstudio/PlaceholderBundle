@@ -57,6 +57,7 @@ class PlaceholderProviderControllerTest extends WebTestCase
         $path = 'Tests/Fixtures/test.jpg';
         $this->client->request('GET', "$path/placeholder");
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        unlink($path . '.svg');
     }
 
     public static function getKernelClass()

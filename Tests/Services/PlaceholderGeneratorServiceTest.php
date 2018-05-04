@@ -1,13 +1,13 @@
 <?php
 
+use BernhardWebstudio\PlaceholderBundle\DependencyInjection\BernhardWebstudioPlaceholderExtension;
+use BernhardWebstudio\PlaceholderBundle\Service\PlaceholderGeneratorInterface;
+use BernhardWebstudio\PlaceholderBundle\Service\PrimitivePlaceholderGenerator;
+use BernhardWebstudio\PlaceholderBundle\Service\SqipPlaceholderGenerator;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-use BernhardWebstudio\PlaceholderBundle\Service\SqipPlaceholderGenerator;
-use BernhardWebstudio\PlaceholderBundle\Service\PlaceholderGeneratorInterface;
-use BernhardWebstudio\PlaceholderBundle\Service\PrimitivePlaceholderGenerator;
-use BernhardWebstudio\PlaceholderBundle\DependencyInjection\BernhardWebstudioPlaceholderExtension;
 
 class PlaceholderGeneratorServiceTest extends TestCase
 {
@@ -65,11 +65,14 @@ class PlaceholderGeneratorServiceTest extends TestCase
         $this->testGenerated($generator);
     }
 
-    public function testGenerated(PlaceholderGeneratorInterface $generator) {
-        $out = $this->testImageOutputPath . ".svg";
-        $this->assertFalse(\file_exists($out));
-        $generator->generate($this->testImageInputPath, $this->testImageOutputPath);
-        $this->assertTrue(\file_exists($out));
-        \unlink($out);
+    public function testGenerated(PlaceholderGeneratorInterface $generator = null)
+    {
+        if ($generator) {
+            $out = $this->testImageOutputPath . ".svg";
+            $this->assertFalse(\file_exists($out));
+            $generator->generate($this->testImageInputPath, $this->testImageOutputPath);
+            $this->assertTrue(\file_exists($out));
+            \unlink($out);
+        }
     }
 }
