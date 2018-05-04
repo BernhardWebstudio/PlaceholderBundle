@@ -35,6 +35,9 @@ class PlaceholderProviderControllerTest extends WebTestCase
         $this->container = $this->client->getContainer();
     }
 
+    /**
+     * Test that a 404 is thrown when requesting a non-existent image
+     */
     public function testPlaceholderUnavailableAction()
     {
         // $this->expectException(NotFoundHttpException::class);
@@ -46,6 +49,9 @@ class PlaceholderProviderControllerTest extends WebTestCase
         }
     }
 
+    /**
+     * Test that a valid response is returned upon requesting an exisiting image
+     */
     public function testPlaceholderAvailableAction()
     {
         $path = 'Tests/Fixtures/test.jpg';
