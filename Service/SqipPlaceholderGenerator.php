@@ -19,7 +19,7 @@ class SqipPlaceholderGenerator extends AbstractNodeExecGenerator {
      * Run sqip to generate the placeholder image svg
      */
     public function generate($input, $output) {
-        $process = new Process(array($this->bin, '-n', $this->iterations, '-o', "$output.svg", $input));
+        $process = new Process(array($this->bin, '-n', $this->iterations, '-o', $output, $input));
         $process->mustRun();
         return $process->getOutput();
     }

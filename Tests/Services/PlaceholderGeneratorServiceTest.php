@@ -20,9 +20,9 @@ class PlaceholderGeneratorServiceTest extends TestCase
      */
     protected $container;
 
-    protected $testImageInputPath = 'Tests/Fixtures/test.jpg';
+    const TEST_IMAGE_INPUT = 'Tests/Fixtures/test.jpg';
 
-    protected $testImageOutputPath = 'Tests/Fixtures/test.jpg.placeholder';
+    const TEST_IMAGE_OUTPUT = 'Tests/Fixtures/test_thumb.jpg';
 
     /**
      *
@@ -68,9 +68,10 @@ class PlaceholderGeneratorServiceTest extends TestCase
     public function testGenerated(PlaceholderGeneratorInterface $generator = null)
     {
         if ($generator) {
-            $out = $this->testImageOutputPath . ".svg";
+            $out = self::TEST_IMAGE_OUTPUT . $generator->getOutputExtension();
             $this->assertFalse(\file_exists($out));
-            $generator->generate($this->testImageInputPath, $this->testImageOutputPath);
+            $generator->generate(self::TEST_IMAGE_INPUT, $out);
+            \clearstatcache();
             $this->assertTrue(\file_exists($out));
             \unlink($out);
         }

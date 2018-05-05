@@ -2,12 +2,13 @@
 
 namespace BernhardWebstudio\PlaceholderBundle\Tests\Controller;
 
-use BernhardWebstudio\PlaceholderBundle\DependencyInjection\BernhardWebstudioPlaceholderExtension;
-use BernhardWebstudio\PlaceholderBundle\Tests\AppKernel;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
+use PlaceholderGeneratorServiceTest;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use BernhardWebstudio\PlaceholderBundle\Tests\AppKernel;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use BernhardWebstudio\PlaceholderBundle\DependencyInjection\BernhardWebstudioPlaceholderExtension;
 
 class PlaceholderProviderControllerTest extends WebTestCase
 {
@@ -54,10 +55,10 @@ class PlaceholderProviderControllerTest extends WebTestCase
      */
     public function testPlaceholderAvailableAction()
     {
-        $path = 'Tests/Fixtures/test.jpg';
-        $this->client->request('GET', "$path/placeholder");
+        $this->client->request('GET', PlaceholderGeneratorServiceTest::TEST_IMAGE_INPUT . "/placeholder");
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        unlink($path . '.svg');
+        $this->assertTrue(\file_exists(PlaceholderGeneratorServiceTest::TEST_IMAGE_OUTPUT . '.svg'));
+        unlink(PlaceholderGeneratorServiceTest::TEST_IMAGE_OUTPUT . '.svg');
     }
 
     public static function getKernelClass()

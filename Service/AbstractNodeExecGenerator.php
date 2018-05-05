@@ -11,6 +11,6 @@ abstract class AbstractNodeExecGenerator implements PlaceholderGeneratorInterfac
     abstract public function __construct($bin, $iterations);
 
     public function getOutputExtension() {
-        return 'svg';
+        return '.svg';
     }
 }
