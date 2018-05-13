@@ -104,7 +104,9 @@ Instead, they usually append `.svg`. This is dependent on the service: call `get
 to get the extension.
 
 ## In Twig
-Use the `placeholder` Twig filter. Apply it on the path of your image.
+Use the `placeholder` Twig filter. Apply it on the path of your image. You can optionally pass 
+an additional parameter, such as 'raw', 'base64' or 'path' to specify how you want the image served. 
+If you are just interested in an URL of the image, refer to the next section.
 
 ## Just the URL, please
 If you configure to include the routing file provided by this bundle, you can generate 

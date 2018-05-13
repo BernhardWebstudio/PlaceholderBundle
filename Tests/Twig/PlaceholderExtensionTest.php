@@ -47,8 +47,10 @@ class PlaceholderExtensionTest extends WebTestCase
 
     public function testGetPlaceholder() {
         $out = PlaceholderTest::TEST_IMAGE_OUTPUT . ".svg";
-        $path = $this->extension->getPlaceholder(PlaceholderTest::TEST_IMAGE_INPUT, 'svg');
+        $path = $this->extension->getPlaceholder(PlaceholderTest::TEST_IMAGE_INPUT, 'path');
         $this->assertEquals($path, $out);
+        $path = $this->extension->getPlaceholder(PlaceholderTest::TEST_IMAGE_INPUT, 'raw');
+        $this->assertEquals($path, \file_get_contents($out));
         $base64 = $this->extension->getPlaceholder(PlaceholderTest::TEST_IMAGE_INPUT, 'base64');
         $this->assertTrue(file_exists($out));
         $this->assertEquals(\base64_encode(\file_get_contents($out)), $base64);

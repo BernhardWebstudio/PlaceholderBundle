@@ -11,6 +11,10 @@ class PlaceholderProviderService
     protected $logger;
     protected $loadPaths;
 
+    const MODE_RAW = 'raw';
+    const MODE_BASE_64 = 'base64';
+    const MODE_PATH = 'path';
+
     public function __construct(
         PlaceholderGeneratorInterface $generator,
         array $loadPaths = array(),
@@ -21,7 +25,7 @@ class PlaceholderProviderService
         $this->logger = $logger;
     }
 
-    public function getPlaceholder($inputfile)
+    public function getPlaceholder($inputfile, $mode = '')
     {
         // resolve input path
         $inputfile = $this->getInputPath($inputfile);
@@ -32,7 +36,21 @@ class PlaceholderProviderService
         if (!\file_exists($outputfile) || filemtime($inputfile) > filemtime($outputfile)) {
             $this->generator->generate($inputfile, $outputfile);
         }
-        return $outputfile;
+
+        switch ($mode) {
+            case self::MODE_BASE_64:
+                return \base64_encode(\file_get_contents($outputfile));
+                break;
+            // alternative: serve the path to the controller instead.
+            // This way, the time used to serve can be reduced
+            case self::MODE_RAW:
+                return \file_get_contents($outputfile);
+                break;
+            case self::MODE_PATH:
+            default:
+                return $outputfile;
+                break;
+        }
     }
 
     /**
@@ -46,7 +64,8 @@ class PlaceholderProviderService
         return $thumb . $this->generator->getOutputExtension();
     }
 
-    public function getOutputMime() {
+    public function getOutputMime()
+    {
         return $this->generator->getOutputMime();
     }
 
