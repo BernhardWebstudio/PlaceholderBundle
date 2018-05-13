@@ -24,6 +24,7 @@ To install this bundle, refer to the following guide.
 Applications that use Symfony Flex
 ----------------------------------
 
+(This installation type is not yet supported. Please refer to the next installations instructions or create a recipe.)
 Open a command console, enter your project directory and execute:
 
 ```console
