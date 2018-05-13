@@ -1,10 +1,11 @@
-<?php 
+<?php
 
 namespace BernhardWebstudio\PlaceholderBundle\Service;
 
 use Symfony\Component\Process\Process;
 
-class SqipPlaceholderGenerator extends AbstractNodeExecGenerator {
+class SqipPlaceholderGenerator extends AbstractNodeExecGenerator
+{
 
     protected $bin = "sqip";
     protected $iterations = 5;
@@ -18,7 +19,8 @@ class SqipPlaceholderGenerator extends AbstractNodeExecGenerator {
     /**
      * Run sqip to generate the placeholder image svg
      */
-    public function generate($input, $output) {
+    public function generate($input, $output)
+    {
         $process = new Process(array($this->bin, '-n', $this->iterations, '-o', $output, $input));
         $process->mustRun();
         return $process->getOutput();

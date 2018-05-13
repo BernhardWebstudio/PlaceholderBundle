@@ -1,13 +1,16 @@
 <?php
 
-use BernhardWebstudio\PlaceholderBundle\DependencyInjection\BernhardWebstudioPlaceholderExtension;
-use BernhardWebstudio\PlaceholderBundle\Service\PlaceholderGeneratorInterface;
-use BernhardWebstudio\PlaceholderBundle\Service\PrimitivePlaceholderGenerator;
-use BernhardWebstudio\PlaceholderBundle\Service\SqipPlaceholderGenerator;
+namespace BernhardWebstudio\PlaceholderBundle\Tests\Services;
+
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use BernhardWebstudio\PlaceholderBundle\Tests\PlaceholderTest;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use BernhardWebstudio\PlaceholderBundle\Service\SqipPlaceholderGenerator;
+use BernhardWebstudio\PlaceholderBundle\Service\PlaceholderGeneratorInterface;
+use BernhardWebstudio\PlaceholderBundle\Service\PrimitivePlaceholderGenerator;
+use BernhardWebstudio\PlaceholderBundle\DependencyInjection\BernhardWebstudioPlaceholderExtension;
 
 class PlaceholderGeneratorServiceTest extends TestCase
 {
@@ -19,10 +22,6 @@ class PlaceholderGeneratorServiceTest extends TestCase
      * @var ContainerBuilder
      */
     protected $container;
-
-    const TEST_IMAGE_INPUT = 'Tests/Fixtures/test.jpg';
-
-    const TEST_IMAGE_OUTPUT = 'Tests/Fixtures/test_thumb.jpg';
 
     /**
      *
@@ -52,8 +51,8 @@ class PlaceholderGeneratorServiceTest extends TestCase
         $this->loadConfiguration('sqip-test');
         $this->assertTrue($this->container->has('bewe_placeholder.generator'));
         $generator = $this->container->get('bewe_placeholder.generator');
-        $this->assertTrue($generator instanceof SqipPlaceholderGenerator);
-        $this->testGenerated($generator);
+        $this->assertInstanceof(SqipPlaceholderGenerator::class, $generator);
+        $this->isGenerated($generator);
     }
 
     public function testPrimitiveGenerator()
@@ -61,16 +60,16 @@ class PlaceholderGeneratorServiceTest extends TestCase
         $this->loadConfiguration('primitive-test');
         $this->assertTrue($this->container->has('bewe_placeholder.generator'));
         $generator = $this->container->get('bewe_placeholder.generator');
-        $this->assertTrue($generator instanceof PrimitivePlaceholderGenerator);
-        $this->testGenerated($generator);
+        $this->assertInstanceof(PrimitivePlaceholderGenerator::class, $generator);
+        $this->isGenerated($generator);
     }
 
-    public function testGenerated(PlaceholderGeneratorInterface $generator = null)
+    public function isGenerated(PlaceholderGeneratorInterface $generator = null)
     {
         if ($generator) {
-            $out = self::TEST_IMAGE_OUTPUT . $generator->getOutputExtension();
+            $out = PlaceholderTest::TEST_IMAGE_OUTPUT . $generator->getOutputExtension();
             $this->assertFalse(\file_exists($out));
-            $generator->generate(self::TEST_IMAGE_INPUT, $out);
+            $generator->generate(PlaceholderTest::TEST_IMAGE_INPUT, $out);
             \clearstatcache();
             $this->assertTrue(\file_exists($out));
             \unlink($out);

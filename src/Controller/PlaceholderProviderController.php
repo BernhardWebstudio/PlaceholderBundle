@@ -19,7 +19,7 @@ class PlaceholderProviderController extends Controller
      *
      * @Route("/{imagePath}/placeholder", name="placeholder", requirements={"imagePath"=".*"})
      */
-    public function placeholderAction(Request $request, string $imagePath)
+    public function placeholderAction(string $imagePath)
     {
         /**
          * @var PlaceholderProviderService
@@ -34,6 +34,4 @@ class PlaceholderProviderController extends Controller
 
         return $this->file($placeholderPath);
     }
-
-    
 }

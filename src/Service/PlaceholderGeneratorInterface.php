@@ -2,7 +2,8 @@
 
 namespace BernhardWebstudio\PlaceholderBundle\Service;
 
-interface PlaceholderGeneratorInterface {
+interface PlaceholderGeneratorInterface
+{
 
     public function generate($inputpath, $outputpath);
 

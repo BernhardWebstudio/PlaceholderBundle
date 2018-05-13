@@ -11,8 +11,11 @@ class PlaceholderProviderService
     protected $logger;
     protected $loadPaths;
 
-    public function __construct(PlaceholderGeneratorInterface $generator, array $loadPaths = array(), LoggerInterface $logger = null)
-    {
+    public function __construct(
+        PlaceholderGeneratorInterface $generator,
+        array $loadPaths = array(),
+        LoggerInterface $logger = null
+    ) {
         $this->generator = $generator;
         $this->loadPaths = $loadPaths;
         $this->logger = $logger;
@@ -43,14 +46,15 @@ class PlaceholderProviderService
     /**
      * Get the actual path to an image
      */
-    public function getInputPath(string $filename) {
+    public function getInputPath(string $filename)
+    {
         // test out the possible paths
-        $i = 0;
+        $index = 0;
         $testPath = $filename;
-        while (!\file_exists($testPath) && $i < count($this->loadPaths)) {
-            $testPath = $this->loadPaths[$i] . $filename;
-            $i++;
+        while (!\file_exists($testPath) && $index < count($this->loadPaths)) {
+            $testPath = $this->loadPaths[$index] . $filename;
+            $index++;
         }
-        return \file_exists($testPath) ? $testPath : NULL;
+        return \file_exists($testPath) ? $testPath : null;
     }
 }

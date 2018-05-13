@@ -37,7 +37,7 @@ class AppKernel extends Kernel
         $this->addBundle(TwigBundle::class);
         $this->addBundle(BernhardWebstudioPlaceholderBundle::class);
         $this->addConfigFile(__DIR__ . '/config.yaml');
-        $this->addConfigFile(__DIR__ . '/../Resources/config/services.yaml');
+        $this->addConfigFile(__DIR__ . '/../src/Resources/config/services.yaml');
     }
     /**
      * @param string $bundleClassName class name of bundle

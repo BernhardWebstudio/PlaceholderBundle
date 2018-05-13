@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use BernhardWebstudio\PlaceholderBundle\Tests\AppKernel;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use BernhardWebstudio\PlaceholderBundle\Tests\PlaceholderTest;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use BernhardWebstudio\PlaceholderBundle\DependencyInjection\BernhardWebstudioPlaceholderExtension;
 
@@ -15,16 +16,15 @@ class PlaceholderProviderControllerTest extends WebTestCase
     /**
      * @var BernhardWebstudioPlaceholderExtension
      */
-    private $extension;
+    protected $extension;
     /**
      * @var ContainerBuilder
      */
-    private $container;
-
+    protected $localContainer;
     /**
      * @var TestClient
      */
-    private $client;
+    protected $client;
 
     /**
      *
@@ -33,7 +33,7 @@ class PlaceholderProviderControllerTest extends WebTestCase
     {
         self::bootKernel();
         $this->client = static::createClient();
-        $this->container = $this->client->getContainer();
+        $this->localContainer = $this->client->getContainer();
     }
 
     /**
@@ -46,7 +46,7 @@ class PlaceholderProviderControllerTest extends WebTestCase
             $this->client->request('GET', '/non-exisitiniging.jpg/placeholder');
             $this->assertEquals(404, $this->client->getResponse()->getStatusCode());
         } catch (\Exception $e) {
-            $this->assertTrue($e instanceof NotFoundHttpException);
+            $this->assertInstanceOf(NotFoundHttpException::class, $e);
         }
     }
 
@@ -55,10 +55,10 @@ class PlaceholderProviderControllerTest extends WebTestCase
      */
     public function testPlaceholderAvailableAction()
     {
-        $this->client->request('GET', PlaceholderGeneratorServiceTest::TEST_IMAGE_INPUT . "/placeholder");
+        $this->client->request('GET', PlaceholderTest::TEST_IMAGE_INPUT . "/placeholder");
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        $this->assertTrue(\file_exists(PlaceholderGeneratorServiceTest::TEST_IMAGE_OUTPUT . '.svg'));
-        unlink(PlaceholderGeneratorServiceTest::TEST_IMAGE_OUTPUT . '.svg');
+        $this->assertTrue(\file_exists(PlaceholderTest::TEST_IMAGE_OUTPUT . '.svg'));
+        unlink(PlaceholderTest::TEST_IMAGE_OUTPUT . '.svg');
     }
 
     public static function getKernelClass()
