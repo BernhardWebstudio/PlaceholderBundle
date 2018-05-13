@@ -4,7 +4,9 @@ namespace BernhardWebstudio\PlaceholderBundle\Controller;
 
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use BernhardWebstudio\PlaceholderBundle\Service\PlaceholderProviderService;
 
@@ -21,6 +23,7 @@ class PlaceholderProviderController extends Controller
      */
     public function placeholderAction(string $imagePath)
     {
+        //$imagePath = substr($imagePath, 0, -12); // substr /placeholder
         /**
          * @var PlaceholderProviderService
          */
@@ -32,6 +35,9 @@ class PlaceholderProviderController extends Controller
 
         $placeholderPath = $providerService->getPlaceholder($input);
 
-        return $this->file($placeholderPath);
+        $response = new Response(\file_get_contents($placeholderPath), Response::HTTP_OK);
+        $response->headers->set('Content-Type', $providerService->getOutputMime());
+        $response->headers->set('Content-Disposition', ResponseHeaderBag::DISPOSITION_INLINE);
+        return $response;
     }
 }

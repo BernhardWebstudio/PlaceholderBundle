@@ -83,6 +83,8 @@ bewe_placeholder:
     service: 'bewe_placeholder.generator.primitive'
     bin: 'primitive'
     iterations: 10
+    load_paths:
+        - "."
 ```
 
 You can change the service to `bewe_placeholder.generator.sqip` if you prefer to use sqip or even 

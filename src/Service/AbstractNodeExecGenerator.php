@@ -15,4 +15,9 @@ abstract class AbstractNodeExecGenerator implements PlaceholderGeneratorInterfac
     {
         return '.svg';
     }
+
+    public function getOutputMime()
+    {
+        return 'image/svg+xml';
+    }
 }
