@@ -11,8 +11,8 @@ matrix:
       go:
         - "1.x"
     - language: node_js
-        node_js:
-          - "node"
+      node_js:
+        - "node"
 
 before_script:
     # To be removed when this issue will be resolved: https://github.com/composer/composer/issues/5355
