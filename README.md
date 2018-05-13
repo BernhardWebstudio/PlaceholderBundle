@@ -1,5 +1,8 @@
 # PlaceholderBundle
 
+[![Travis](https://img.shields.io/travis/BernhardWebstudio/PlaceholderBundle.svg?style=flat-square)](https://api.travis-ci.org/BernhardWebstudio/PlaceholderBundle)
+[![Coverage Status](https://img.shields.io/coveralls/github/BernhardWebstudio/PlaceholderBundle.svg?style=flat-square)](https://coveralls.io/github/BernhardWebstudio/PlaceholderBundle?branch=master)
+
 What is this bundle?
 ============
 
