@@ -107,7 +107,12 @@ Use the `placeholder` Twig filter. Apply it on the path of your image.
 ## Just the URL, please
 If you configure to include the routing file provided by this bundle, you can generate 
 a route named `bewe_placeholder` with the parameter `imagePath`. This URL will provide you 
-with the placeholder, default lazyly generated.
+with the placeholder, default lazyly generated. The routing file can be included in your 
+routing.yml like this, for example:
+```yaml
+bewe_placeholder_urls:
+    resource: "@BernhardWebstudioPlaceholderBundle/Resources/config/routing.yaml"
+```
 
 Contributions
 ============

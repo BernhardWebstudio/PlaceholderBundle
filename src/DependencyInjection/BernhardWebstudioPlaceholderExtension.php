@@ -12,31 +12,31 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class BernhardWebstudioPlaceholderExtension extends Extension
 {
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $defaultConfigs, ContainerBuilder $container)
     {
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yaml');
 
         $configuration = new Configuration();
 
-        $config = $this->processConfiguration($configuration, $configs);
+        $config = $this->processConfiguration($configuration, $defaultConfigs);
 
-        if (\array_key_exists('load_paths', $configs)) {
+        if (\array_key_exists('load_paths', $config)) {
             $providerDefinition = $container->getDefinition('bewe_placeholder.provider');
-            $providerDefinition->replaceArgument(1, $configs['load_paths']);
+            $providerDefinition->replaceArgument(1, $config['load_paths']);
         }
 
         $service = $config['service'];
         $serviceDefinition = $container->getDefinition($config['service']);
 
         if (is_subclass_of($serviceDefinition->getClass(), AbstractNodeExecGenerator::class)) {
-            if (\array_key_exists('bin', $configs)) {
-                $bin = $configs['bin'];
+            if (\array_key_exists('bin', $config)) {
+                $bin = $config['bin'];
                 $serviceDefinition->replaceArgument(0, $bin);
             }
 
-            if (\array_key_exists('iterations', $configs)) {
-                $iterations = $configs['iterations'];
+            if (\array_key_exists('iterations', $config)) {
+                $iterations = $config['iterations'];
                 $serviceDefinition->replaceArgument(1, $iterations);
             }
         }
