@@ -21,7 +21,7 @@
         "code-sniffer": "./vendor/bin/phpcs --standard=PSR2 src",
         "code-sniffer-fix": "./vendor/bin/phpcbf --standard=PSR2 src"
       },
-    "minimum-stability" : "beta",
+    "minimum-stability" : "stable",
     "require": {
         "php": ">=7.0",
         "symfony/dependency-injection": "^4.0",

@@ -115,7 +115,7 @@ Contributions are welcome. Just open a PR!
 
 ## TODO
 
-- Get load paths as parameters
-- Test Twig extension
+- Docs: Get load paths as parameters
+- Extend Twig Extension to provide more options
 - Pre-generate to be requested images
-- Create Recipe: https://github.com/symfony/recipes
+- Create [Recipe](https://github.com/symfony/recipes)

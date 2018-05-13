@@ -1,18 +1,15 @@
 language: php
 
-matrix:
-  include:
-    - language: php
-      php:
-        - '7.1'
-        - '7.2'
-        - nightly
-    - language: go
-      go:
-        - "1.x"
-    - language: node_js
-      node_js:
-        - "node"
+php:
+  - '7.1'
+  - '7.2'
+  - nightly
+       
+go:
+  - "1.x"
+        
+node_js:
+  - "node"
 
 before_script:
     # To be removed when this issue will be resolved: https://github.com/composer/composer/issues/5355
