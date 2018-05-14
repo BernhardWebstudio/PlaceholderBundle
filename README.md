@@ -106,7 +106,10 @@ to get the extension.
 
 ## In Twig
 Use the `placeholder` Twig filter. Apply it on the path of your image. You can optionally pass 
-an additional parameter, such as 'raw', 'base64' or 'path' to specify how you want the image served. 
+an additional parameter, such as 'raw', 'base64', 'url' or 'path' to specify how you want the image served. 
+Raw returns the files content, base64 gets you the base64 encoded files content, url returns 
+the optimized src-attribute (svg as svg, other images as base64, all ready to serve as `src=`-attribute value) 
+and with path you get the path to the placeholder image.
 If you are just interested in an URL of the image, refer to the next section.
 
 ## Just the URL, please
