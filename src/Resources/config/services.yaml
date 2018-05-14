@@ -13,7 +13,8 @@ services:
         autowire: false
         public: true
         arguments:
-          - 'sqip'
+          - 'node_modules/.bin/sqip'
+          - 'node'
           - 5
     bewe_placeholder.generator.primitive:
         class: BernhardWebstudio\PlaceholderBundle\Service\PrimitivePlaceholderGenerator
@@ -21,4 +22,5 @@ services:
         public: true
         arguments:
           - 'primitive'
+          - ~
           - 10

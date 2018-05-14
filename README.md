@@ -76,12 +76,13 @@ class AppKernel extends Kernel
 Configuration
 ============
 
-The standard configuration looks like this:
+The standard configuration, which can be overriden as usual with Symfony bundles, looks like this:
 
 ```yaml
 bewe_placeholder:
     service: 'bewe_placeholder.generator.primitive'
     bin: 'primitive'
+    node_bin: 'node'
     iterations: 10
     load_paths:
         - "."
@@ -127,5 +128,6 @@ Contributions are welcome. Just open a PR!
 
 - Docs: Get load paths as parameters
 - Extend Twig Extension to provide more options
+- Add resized (thumbnail) placeholder generator
 - Pre-generate to be requested images
 - Create [Recipe](https://github.com/symfony/recipes)
