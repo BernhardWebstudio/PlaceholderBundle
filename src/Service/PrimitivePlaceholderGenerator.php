@@ -8,11 +8,14 @@ class PrimitivePlaceholderGenerator extends AbstractNodeExecGenerator
 {
 
     protected $bin = "primitive";
+    // TODO: use
+    protected $node_bin = "node";
     protected $iterations = 10;
 
-    public function __construct($bin = "primitive", $iterations = 10)
+    public function __construct($bin = "primitive", $node_bin = "node", $iterations = 10)
     {
         $this->bin = $bin;
+        $this->node_bin = $node_bin;
         $this->iterations = $iterations;
     }
 

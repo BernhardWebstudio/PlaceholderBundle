@@ -71,7 +71,9 @@ class BernhardWebstudioPlaceholderExtensionTest extends TestCase
         $this->assertTrue($this->container->hasParameter('bewe_placeholder'));
         $config = $this->container->getParameter('bewe_placeholder');
         $this->assertNotEmpty($config['bin']);
-        $this->assertEquals($config['bin'], 'sqip');
+        $this->assertEquals($config['bin'], 'node_modules/.bin/sqip');
+        $this->assertNotEmpty($config['node_bin']);
+        $this->assertEquals($config['node_bin'], 'node');
         $this->assertNotEmpty($config['service']);
         $this->assertEquals($config['service'], 'bewe_placeholder.generator.sqip');
         $this->assertNotEmpty($config['iterations']);

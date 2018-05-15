@@ -12,6 +12,7 @@ class PlaceholderProviderService
 
     const MODE_RAW = 'raw';
     const MODE_BASE_64 = 'base64';
+    const MODE_URL = 'url';
     const MODE_PATH = 'path';
 
     public function __construct(
@@ -45,6 +46,14 @@ class PlaceholderProviderService
             case self::MODE_RAW:
                 return \file_get_contents($outputfile);
                 break;
+            case self::MODE_URL:
+                $url = "data:" . $this->getOutputMime() . ";utf8,";
+                if ($this->getOutputMime() === "image/svg+xml") {
+                    $url .= \file_get_contents($outputfile);
+                } else {
+                    $url .= \base64_encode(\file_get_contents($outputfile));
+                }
+                return $url;
             case self::MODE_PATH:
             default:
                 return $outputfile;

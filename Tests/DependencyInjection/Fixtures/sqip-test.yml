@@ -1,4 +1,5 @@
 bewe_placeholder:
-  bin: sqip
+  bin: 'node_modules/.bin/sqip'
+  node_bin: 'node'
   service: bewe_placeholder.generator.sqip
   iterations: 13

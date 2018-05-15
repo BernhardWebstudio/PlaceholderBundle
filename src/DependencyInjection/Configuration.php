@@ -20,6 +20,7 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('service')->cannotBeEmpty()->defaultValue('bewe_placeholder.generator.primitive')->end()
             ->integerNode('iterations')->defaultValue(self::ITERATIONS_DEFAULT)->end()
             ->scalarNode('bin')->end()
+            ->scalarNode('node_bin')->end()
             ->end();
 
         return $treeBuilder;

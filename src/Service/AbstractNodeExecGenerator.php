@@ -9,7 +9,7 @@ use BernhardWebstudio\PlaceholderBundle\Service\PlaceholderGeneratorInterface;
  */
 abstract class AbstractNodeExecGenerator implements PlaceholderGeneratorInterface
 {
-    abstract public function __construct($bin, $iterations);
+    abstract public function __construct($bin, $node_bin, $iterations);
 
     public function getOutputExtension()
     {

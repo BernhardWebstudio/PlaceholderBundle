@@ -35,9 +35,14 @@ class BernhardWebstudioPlaceholderExtension extends Extension
                 $serviceDefinition->replaceArgument(0, $bin);
             }
 
+            if (\array_key_exists('node_bin', $config)) {
+                $bin = $config['node_bin'];
+                $serviceDefinition->replaceArgument(1, $bin);
+            }
+
             if (\array_key_exists('iterations', $config)) {
                 $iterations = $config['iterations'];
-                $serviceDefinition->replaceArgument(1, $iterations);
+                $serviceDefinition->replaceArgument(2, $iterations);
             }
         }
 

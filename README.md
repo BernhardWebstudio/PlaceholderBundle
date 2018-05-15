@@ -76,12 +76,13 @@ class AppKernel extends Kernel
 Configuration
 ============
 
-The standard configuration looks like this:
+The standard configuration, which can be overriden as usual with Symfony bundles, looks like this:
 
 ```yaml
 bewe_placeholder:
     service: 'bewe_placeholder.generator.primitive'
     bin: 'primitive'
+    node_bin: 'node'
     iterations: 10
     load_paths:
         - "."
@@ -105,7 +106,10 @@ to get the extension.
 
 ## In Twig
 Use the `placeholder` Twig filter. Apply it on the path of your image. You can optionally pass 
-an additional parameter, such as 'raw', 'base64' or 'path' to specify how you want the image served. 
+an additional parameter, such as 'raw', 'base64', 'url' or 'path' to specify how you want the image served. 
+Raw returns the files content, base64 gets you the base64 encoded files content, url returns 
+the optimized src-attribute (svg as svg, other images as base64, all ready to serve as `src=`-attribute value) 
+and with path you get the path to the placeholder image.
 If you are just interested in an URL of the image, refer to the next section.
 
 ## Just the URL, please
@@ -127,5 +131,6 @@ Contributions are welcome. Just open a PR!
 
 - Docs: Get load paths as parameters
 - Extend Twig Extension to provide more options
+- Add resized (thumbnail) placeholder generator
 - Pre-generate to be requested images
 - Create [Recipe](https://github.com/symfony/recipes)
