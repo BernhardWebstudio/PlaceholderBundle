@@ -3,13 +3,12 @@
 namespace BernhardWebstudio\PlaceholderBundle\Service;
 
 use BernhardWebstudio\PlaceholderBundle\Service\PlaceholderGeneratorInterface;
-use Psr\Log\LoggerInterface;
 
 class PlaceholderProviderService
 {
     protected $generator;
-    protected $logger;
     protected $loadPaths;
+    protected $outputPath;
 
     const MODE_RAW = 'raw';
     const MODE_BASE_64 = 'base64';
@@ -18,11 +17,11 @@ class PlaceholderProviderService
     public function __construct(
         PlaceholderGeneratorInterface $generator,
         array $loadPaths = array(),
-        LoggerInterface $logger = null
+        $outputPath = null
     ) {
         $this->generator = $generator;
         $this->loadPaths = $loadPaths;
-        $this->logger = $logger;
+        $this->outputPath = $outputPath;
     }
 
     public function getPlaceholder($inputfile, $mode = '')
@@ -58,12 +57,27 @@ class PlaceholderProviderService
      */
     public function getOutputPath(string $filename)
     {
+        if ($this->outputPath) {
+            $dir = $this->outputPath;
+        } else {
+            $dir = \dirname($filename);
+        }
+        return $dir . $filename;
+    }
+
+    /**
+     * Get the filename of an outputed placeholder
+     */
+    protected function getOutputFileName($filename) {
         $extension_pos = strrpos($filename, '.'); // find position of the last dot, so where the extension starts
         $thumb = substr($filename, 0, $extension_pos) . '_thumb' . substr($filename, $extension_pos);
         // let the service add a custom extension
         return $thumb . $this->generator->getOutputExtension();
     }
 
+    /**
+     * Get the mimetype of a placeholder. Used e.g. in Conroller to return a suitable Response
+     */
     public function getOutputMime()
     {
         return $this->generator->getOutputMime();
@@ -75,6 +89,7 @@ class PlaceholderProviderService
     public function getInputPath(string $filename)
     {
         // test out the possible paths
+        // probably, it could be a good idea to use the Symfony Finder component
         $index = 0;
         $testPath = $filename;
         while (!\file_exists($testPath) && $index < count($this->loadPaths)) {
