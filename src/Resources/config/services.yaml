@@ -5,8 +5,8 @@ services:
         public: true
         arguments:
             - '@bewe_placeholder.generator'
-            - []
-            - ~ 
+            - ["."]
+            - ~
             # - '@logger'
     bewe_placeholder.generator.sqip:
         class: BernhardWebstudio\PlaceholderBundle\Service\SqipPlaceholderGenerator

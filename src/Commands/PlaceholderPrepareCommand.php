@@ -1,18 +1,22 @@
-<?php 
+<?php
 
 namespace BernhardWebstudio\PlaceholderBundle\Commands;
 
+use Symfony\Component\Finder\Finder;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use BernhardWebstudio\PlaceholderBundle\Service\PlaceholderProviderService;
 
-class PlaceholderPrepareCommand extends Command {
+class PlaceholderPrepareCommand extends Command
+{
 
     protected $provider;
 
-    public function __counstruct(PlaceholderProviderService $provider) {
+    public function __construct(PlaceholderProviderService $provider)
+    {
         $this->provider = $provider;
+        parent::__construct();
     }
 
     protected function configure()
@@ -28,7 +32,6 @@ class PlaceholderPrepareCommand extends Command {
         // the full command description shown when running the command with
         // the "--help" option
         ->setHelp('This command creates the placeholders for all the images in your load_paths');
-
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -41,7 +44,6 @@ class PlaceholderPrepareCommand extends Command {
         }
 
         $finder->files();
-        $output = array();
         if (!$dry) {
             foreach ($finder as $image) {
                 $path = $this->provider->getPlaceholder($image->getRealPath(), PlaceholderProviderService::MODE_PATH);

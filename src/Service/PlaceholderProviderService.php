@@ -115,7 +115,8 @@ class PlaceholderProviderService
      * - dump command
      * - testing
      */
-    public function getLoadPaths() {
-        return $this->loadPaths();
+    public function getLoadPaths()
+    {
+        return $this->loadPaths;
     }
 }
