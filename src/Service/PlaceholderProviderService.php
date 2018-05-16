@@ -3,6 +3,7 @@
 namespace BernhardWebstudio\PlaceholderBundle\Service;
 
 use BernhardWebstudio\PlaceholderBundle\Service\PlaceholderGeneratorInterface;
+use Symfony\Component\Finder\Finder;
 
 class PlaceholderProviderService
 {
@@ -71,13 +72,14 @@ class PlaceholderProviderService
         } else {
             $dir = \dirname($filename);
         }
-        return $dir . $filename;
+        return $dir . "/" . $this->getOutputFileName(\basename($filename));
     }
 
     /**
      * Get the filename of an outputed placeholder
      */
-    protected function getOutputFileName($filename) {
+    protected function getOutputFileName($filename)
+    {
         $extension_pos = strrpos($filename, '.'); // find position of the last dot, so where the extension starts
         $thumb = substr($filename, 0, $extension_pos) . '_thumb' . substr($filename, $extension_pos);
         // let the service add a custom extension
@@ -106,5 +108,9 @@ class PlaceholderProviderService
             $index++;
         }
         return \file_exists($testPath) ? $testPath : null;
+    }
+
+    public function getLoadPaths() {
+        return $this->loadPaths();
     }
 }
