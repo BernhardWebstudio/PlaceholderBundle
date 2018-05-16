@@ -36,7 +36,7 @@ class PlaceholderPrepareCommand extends Command {
         $dry = $input->getOption('dry');
         $finder = new Finder();
         $finder->name("/\.jpe?g$/")->name('*.png');
-        foreach ($this->loadPaths as $path) {
+        foreach ($this->provider->getLoadPaths() as $path) {
             $finder->in($path);
         }
 

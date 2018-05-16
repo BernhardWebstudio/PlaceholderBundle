@@ -110,6 +110,11 @@ class PlaceholderProviderService
         return \file_exists($testPath) ? $testPath : null;
     }
 
+    /**
+     * Use these load paths e.g. for:
+     * - dump command
+     * - testing
+     */
     public function getLoadPaths() {
         return $this->loadPaths();
     }
