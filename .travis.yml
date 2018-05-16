@@ -12,9 +12,9 @@ node_js:
   - "node"
 
 before_script:
-    # To be removed when this issue will be resolved: https://github.com/composer/composer/issues/5355
+    # go to be sure in case its a 32 bit machine. Also, it is easier this way
     - go get -u github.com/fogleman/primitive
-    - npm install -g sqip
+    - npm install
     - composer update --prefer-dist --no-interaction --prefer-stable --quiet
     - composer update ${COMPOSER_FLAGS} --prefer-dist --no-interaction
     - ./vendor/bin/simple-phpunit install
@@ -27,7 +27,7 @@ script:
     - composer run code-sniffer
     - composer run test
     - composer run static-analysis
-    - composer run mess-detector
+    #- composer run mess-detector
 
 after_success:
   - travis_retry php vendor/bin/php-coveralls -v
