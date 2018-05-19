@@ -2,6 +2,7 @@
 
 namespace BernhardWebstudio\PlaceholderBundle\Commands;
 
+use Symfony\Component\Finder\Finder;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -11,7 +12,7 @@ class PlaceholderPrepareCommand extends Command {
 
     protected $provider;
 
-    public function __counstruct(PlaceholderProviderService $provider) {
+    public function __construct(PlaceholderProviderService $provider) {
         $this->provider = $provider;
     }
 
@@ -33,7 +34,7 @@ class PlaceholderPrepareCommand extends Command {
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $dry = $input->getOption('dry');
+        $dry = $input->hasOption('dry') ? $input->getOption('dry') : true;
         $finder = new Finder();
         $finder->name("/\.jpe?g$/")->name('*.png');
         foreach ($this->provider->getLoadPaths() as $path) {

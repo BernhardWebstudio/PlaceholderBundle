@@ -9,6 +9,7 @@ use Symfony\Component\Yaml\Command\LintCommand;
 use BernhardWebstudio\PlaceholderBundle\Tests\AppKernel;
 use Symfony\Bundle\FrameworkBundle\Command\ConfigDebugCommand;
 use Symfony\Bundle\FrameworkBundle\Command\ConfigDumpReferenceCommand;
+use BernhardWebstudio\PlaceholderBundle\Commands\PlaceholderPrepareCommand;
 
 $kernel = new AppKernel();
 $application = new Application();
@@ -17,5 +18,6 @@ $application = new Application();
 $application->add(new LintCommand());
 $application->add(new ConfigDebugCommand());
 $application->add(new ConfigDumpReferenceCommand());
+$application->add(new PlaceholderPrepareCommand());
 
 $application->run();
