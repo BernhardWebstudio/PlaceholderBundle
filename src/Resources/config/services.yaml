@@ -1,4 +1,12 @@
 services:
+    bewe_placeholder.dumper:
+        class: BernhardWebstudio\PlaceholderBundle\Commands\PlaceholderPrepareCommand
+        public: true
+        arguments:
+            - "@bewe_placeholder.provider"
+        tags:
+            - { name: console.command }
+
     bewe_placeholder.provider:
         class: BernhardWebstudio\PlaceholderBundle\Service\PlaceholderProviderService
         autowire: false
