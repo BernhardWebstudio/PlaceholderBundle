@@ -68,11 +68,10 @@ class PlaceholderProviderService
     public function getOutputPath(string $filename)
     {
         if ($this->outputPath) {
-            $dir = $this->outputPath;
-        } else {
-            $dir = \dirname($filename);
+            // hash to make sure the file does not collide with a file with the same name
+            return $this->outputPath . "/" . sha1($filename);
         }
-        return $dir . "/" . $this->getOutputFileName(\basename($filename));
+        return \dirname($filename) . "/" . $this->getOutputFileName(\basename($filename));
     }
 
     /**
