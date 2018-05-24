@@ -28,7 +28,9 @@ class BernhardWebstudioPlaceholderExtension extends Extension
 
         if (\array_key_exists('output_path', $config)) {
             $output_path = $config['output_path'];
-            \mkdir($output_path, 0764, TRUE);
+            if (!\file_exists($output_path)) {
+                \mkdir($output_path, 0764, true);
+            }
             $providerDefinition->replaceArgument(2, $output_path);
         }
 
