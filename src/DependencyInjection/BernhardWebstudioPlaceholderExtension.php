@@ -27,7 +27,9 @@ class BernhardWebstudioPlaceholderExtension extends Extension
         }
 
         if (\array_key_exists('output_path', $config)) {
-            $providerDefinition->replaceArgument(2, $config['output_path']);
+            $output_path = $config['output_path'];
+            \mkdir($output_path, 0764, TRUE);
+            $providerDefinition->replaceArgument(2, $output_path);
         }
 
         $service = $config['service'];
