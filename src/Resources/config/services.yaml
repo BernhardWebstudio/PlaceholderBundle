@@ -1,4 +1,12 @@
 services:
+    bewe_placeholder.extension:
+        class: BernhardWebstudio\PlaceholderBundle\Twig\PlaceholderExtension
+        public: false
+        arguments:
+            - "@bewe_placeholder.provider"
+        tags:
+            - { name: twig.extension }
+
     bewe_placeholder.dumper:
         class: BernhardWebstudio\PlaceholderBundle\Commands\PlaceholderPrepareCommand
         public: true
