@@ -10,14 +10,19 @@ use BernhardWebstudio\PlaceholderBundle\Commands\PlaceholderPrepareCommand;
 
 class PlaceholderPrepareCommandTest extends KernelTestCase
 {
+    protected $application;
+
+    public function setUp() {
+        $kernel = self::bootKernel();
+        $this->application = new Application($kernel);
+        $localContainer = self::$kernel->getContainer();
+        $provider = $localContainer->get("bewe_placeholder.provider");
+        $this->application->add(new PlaceholderPrepareCommand($provider));
+    }
+
     public function testExecute()
     {
-        $kernel = self::bootKernel();
-        $application = new Application($kernel);
-
-        $application->add(new PlaceholderPrepareCommand());
-
-        $command = $application->find('bewe:placeholder:prepare');
+        $command = $this->application->find('bewe:placeholder:prepare');
         $commandTester = new CommandTester($command);
         $commandTester->execute(array(
             'command' => $command->getName(),

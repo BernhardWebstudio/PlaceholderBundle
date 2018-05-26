@@ -84,6 +84,7 @@ bewe_placeholder:
     bin: 'primitive'
     node_bin: 'node'
     iterations: 10
+    output_path: ~
     load_paths:
         - "."
 ```
@@ -96,7 +97,9 @@ Usage
 
 ## In a Controller or Service
 To get the path to a placeholder of an image, request the `bewe_placeholder.provider` service. 
-On this object, call `getPlaceholder($imagepath)` with the path to your image as argument.
+On this object, call `getPlaceholder($imagepath)` with the path to your image as argument. As a second 
+Parameter, you could pass the mode what you want in return, such as 'raw', 'base64', 'url' or 'path'. 
+Defaults to 'path'.
 
 To force generatation of an image, the service `bewe_placeholder.generator` can be used. Pass 
 as arguments the input and the output path to the function `generate($input, $output)`. 
@@ -122,6 +125,11 @@ bewe_placeholder_urls:
     resource: "@BernhardWebstudioPlaceholderBundle/Resources/config/routing.yaml"
 ```
 
+## Pregenerate images
+If you have performance concerns, use the `bewe:placeholder:prepare` command to generate placeholders for all 
+the images in your load_paths. The option --dry enables you to see which images would be output to test 
+your configuration.
+
 Contributions
 ============
 
@@ -129,8 +137,6 @@ Contributions are welcome. Just open a PR!
 
 ## TODO
 
-- Docs: Get load paths as parameters
-- Extend Twig Extension to provide more options
 - Add resized (thumbnail) placeholder generator
-- Pre-generate to be requested images
+- Pre-generate to be requested images using tha CacheWarmer
 - Create [Recipe](https://github.com/symfony/recipes)

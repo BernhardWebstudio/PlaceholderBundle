@@ -21,6 +21,7 @@ class Configuration implements ConfigurationInterface
             ->integerNode('iterations')->defaultValue(self::ITERATIONS_DEFAULT)->end()
             ->scalarNode('bin')->end()
             ->scalarNode('node_bin')->end()
+            ->scalarNode('output_path')->end()
             ->end();
 
         return $treeBuilder;
