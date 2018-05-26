@@ -127,8 +127,8 @@ bewe_placeholder_urls:
 
 ## Pregenerate images
 If you have performance concerns, use the `bewe:placeholder:prepare` command to generate placeholders for all 
-the images in your load_paths. The option --dry enables you to see which images would be output to test 
-your configuration.
+the images in your load_paths. The option --dry enables you to see which images would be generated and can be used 
+to test your configuration.
 
 Contributions
 ============

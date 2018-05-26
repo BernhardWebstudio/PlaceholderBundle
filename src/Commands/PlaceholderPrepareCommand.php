@@ -2,11 +2,7 @@
 
 namespace BernhardWebstudio\PlaceholderBundle\Commands;
 
-<<<<<<< HEAD
-use Symfony\Component\Finder\Finder;
-=======
 use BernhardWebstudio\PlaceholderBundle\Service\PlaceholderProviderService;
->>>>>>> c97d8279c531679623272b191a092d724234a502
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -17,12 +13,8 @@ class PlaceholderPrepareCommand extends Command
 
     protected $provider;
 
-<<<<<<< HEAD
-    public function __construct(PlaceholderProviderService $provider) {
-=======
     public function __construct(PlaceholderProviderService $provider)
     {
->>>>>>> c97d8279c531679623272b191a092d724234a502
         $this->provider = $provider;
         parent::__construct();
     }
@@ -55,15 +47,23 @@ class PlaceholderPrepareCommand extends Command
         }
 
         $finder->files();
+        // loop the images to be generated inside
         foreach ($finder as $image) {
-            if (!$dry) {
-                $path = $this->provider->getPlaceholder($image->getRealPath(), PlaceholderProviderService::MODE_PATH);
-                $output->writeln($path . ' created.');
-            } else {
-                $output->writeln($image . ' would have been processed.');
+            $inputPath = $image->getRealPath();
+            $outputPath = $this->provider->getOutputPath($inputPath);
+            // only output if not already done in another session
+            if (!\file_exists($outputPath) || (filemtime($inputPath) > filemtime($outputPath))) {
+                if (!$dry) {
+                    // do output images
+                    $path = $this->provider->getPlaceholder($image->getRealPath(), PlaceholderProviderService::MODE_PATH);
+                    $output->writeln($path . ' created.');
+                } else {
+                    // do output image path before and after
+                    $output->writeln($inputPath . ' would have been processed to ' . $outputPath .'.');
+                }
             }
         }
 
-        $output->writeln("Handled " . count($finder) . ' images.');
+        $output->writeln("Processed " . count($finder) . ' images.');
     }
 }
