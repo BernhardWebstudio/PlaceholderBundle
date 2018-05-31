@@ -3,7 +3,6 @@
 namespace BernhardWebstudio\PlaceholderBundle\Service;
 
 use BernhardWebstudio\PlaceholderBundle\Service\PlaceholderGeneratorInterface;
-use Symfony\Component\Finder\Finder;
 
 class PlaceholderProviderService
 {
@@ -120,11 +119,12 @@ class PlaceholderProviderService
     }
 
     /**
-     * URL-Encode SVGs in a rather compressive way. 
-     * 
+     * URL-Encode SVGs in a rather compressive way.
+     *
      * Inspiration: https://github.com/tigt/mini-svg-data-uri
      */
-    protected function svgUrlEncode($svgPath) {
+    protected function svgUrlEncode($svgPath)
+    {
         $data = \file_get_contents($svgPath);
         $data = \preg_replace('/\v(?:[\v\h]+)/', '', $data);
         $data = \str_replace('"', "'", $data);
