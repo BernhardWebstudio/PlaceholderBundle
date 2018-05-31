@@ -50,7 +50,7 @@ class PlaceholderProviderService
             case self::MODE_URL:
                 $url = "data:" . $this->getOutputMime() . ";utf8,";
                 if ($this->getOutputMime() === "image/svg+xml") {
-                    $url .= \file_get_contents($outputfile);
+                    $url .= $this->svgUrlEncode($outputfile);
                 } else {
                     $url .= \base64_encode(\file_get_contents($outputfile));
                 }
@@ -117,5 +117,23 @@ class PlaceholderProviderService
     public function getLoadPaths()
     {
         return $this->loadPaths;
+    }
+
+    /**
+     * URL-Encode SVGs in a rather compressive way. 
+     * 
+     * Inspiration: https://github.com/tigt/mini-svg-data-uri
+     */
+    protected function svgUrlEncode($svgPath) {
+        $data = \file_get_contents($svgPath);
+        $data = \preg_replace('/\v(?:[\v\h]+)/', '', $data);
+        $data = \str_replace('"', "'", $data);
+        $data = \url_encode($data);
+        // re-decode a few characters understood by browsers to improve compression
+        $data = \str_replace('%20', ' ', $data);
+        $data = \str_replace('%3D', '=', $data);
+        $data = \str_replace('%3A', ':', $data);
+        $data = \str_replace('%2F', '/', $data);
+        return $data;
     }
 }
