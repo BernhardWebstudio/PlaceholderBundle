@@ -128,7 +128,7 @@ class PlaceholderProviderService
         $data = \file_get_contents($svgPath);
         $data = \preg_replace('/\v(?:[\v\h]+)/', '', $data);
         $data = \str_replace('"', "'", $data);
-        $data = \url_encode($data);
+        $data = \urlencode($data);
         // re-decode a few characters understood by browsers to improve compression
         $data = \str_replace('%20', ' ', $data);
         $data = \str_replace('%3D', '=', $data);
