@@ -15,7 +15,7 @@ class PlaceholderPrepareCommandTest extends KernelTestCase
     public function setUp() {
         $kernel = self::bootKernel();
         $this->application = new Application($kernel);
-        $localContainer = self::$kernel->getContainer();
+        $localContainer = $kernel->getContainer();
         $provider = $localContainer->get("bewe_placeholder.provider");
         $this->application->add(new PlaceholderPrepareCommand($provider));
     }
@@ -26,7 +26,6 @@ class PlaceholderPrepareCommandTest extends KernelTestCase
         $commandTester = new CommandTester($command);
         $commandTester->execute(array(
             'command' => $command->getName(),
-
             // pass options to the helper
             '--dry' => 'true',
         ));

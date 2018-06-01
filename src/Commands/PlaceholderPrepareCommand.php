@@ -55,7 +55,7 @@ class PlaceholderPrepareCommand extends Command
             if (!\file_exists($outputPath) || (filemtime($inputPath) > filemtime($outputPath))) {
                 if (!$dry) {
                     // do output images
-                    $path = $this->provider->getPlaceholder($image->getRealPath(), PlaceholderProviderService::MODE_PATH);
+                    $path = $this->provider->getPlaceholder($inputPath, PlaceholderProviderService::MODE_PATH);
                     $output->writeln($path . ' created.');
                 } else {
                     // do output image path before and after
