@@ -13,9 +13,10 @@ class PlaceholderPrepareCommandTest extends KernelTestCase
     protected $application;
 
     public function setUp() {
-        $kernel = self::bootKernel();
-        $this->application = new Application($kernel);
-        $localContainer = $kernel->getContainer();
+        static::$kernel = static::createKernel();
+        static::$kernel->boot();
+        $this->application = new Application(static::$kernel);
+        $localContainer = static::$kernel->getContainer();
         $provider = $localContainer->get("bewe_placeholder.provider");
         $this->application->add(new PlaceholderPrepareCommand($provider));
     }
@@ -33,10 +34,5 @@ class PlaceholderPrepareCommandTest extends KernelTestCase
         // the output of the command in the console
         $output = $commandTester->getDisplay();
         $this->assertContains('Dry run', $output);
-    }
-
-    public static function getKernelClass()
-    {
-        return AppKernel::class;
     }
 }

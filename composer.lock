@@ -3285,16 +3285,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.2.2",
+            "version": "7.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "3cf0836680bf5c365c627e8566d46c9e1f544db9"
+                "reference": "00bc0b93f0ff4f557e9ea766557fde96da9a03dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3cf0836680bf5c365c627e8566d46c9e1f544db9",
-                "reference": "3cf0836680bf5c365c627e8566d46c9e1f544db9",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/00bc0b93f0ff4f557e9ea766557fde96da9a03dd",
+                "reference": "00bc0b93f0ff4f557e9ea766557fde96da9a03dd",
                 "shasum": ""
             },
             "require": {
@@ -3365,7 +3365,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-06-01T07:54:27+00:00"
+            "time": "2018-06-05T03:40:05+00:00"
         },
         {
             "name": "psr/http-message",
@@ -3982,16 +3982,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.2.3",
+            "version": "3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "4842476c434e375f9d3182ff7b89059583aa8b27"
+                "reference": "d86873af43b4aa9d1f39a3601cc0cfcf02b25266"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/4842476c434e375f9d3182ff7b89059583aa8b27",
-                "reference": "4842476c434e375f9d3182ff7b89059583aa8b27",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/d86873af43b4aa9d1f39a3601cc0cfcf02b25266",
+                "reference": "d86873af43b4aa9d1f39a3601cc0cfcf02b25266",
                 "shasum": ""
             },
             "require": {
@@ -4029,7 +4029,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2018-02-20T21:35:23+00:00"
+            "time": "2018-06-06T23:58:19+00:00"
         },
         {
             "name": "symfony/browser-kit",

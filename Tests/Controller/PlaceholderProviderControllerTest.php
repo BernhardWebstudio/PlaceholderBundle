@@ -60,9 +60,4 @@ class PlaceholderProviderControllerTest extends WebTestCase
         $this->assertTrue(\file_exists(PlaceholderTest::TEST_IMAGE_OUTPUT . '.svg'));
         unlink(PlaceholderTest::TEST_IMAGE_OUTPUT . '.svg');
     }
-
-    public static function getKernelClass()
-    {
-        return AppKernel::class;
-    }
 }
