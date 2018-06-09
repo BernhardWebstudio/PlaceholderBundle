@@ -7,24 +7,28 @@
 What is this bundle?
 ============
 
-Use this bundle if you are looking for an easy way to generate beautiful placeholders or thumbnails for your project. 
+Use this bundle if you are looking for an easy way to generate beautiful 
+placeholders or thumbnails for your project. 
 
-Do you provide a page full of images? Do you use a lazy-loader with a grey-only image? Then this bundle is 
-something for you!
+Do you provide a site with pages full of images? Do you use a lazy-loader with a grey-only image? 
+Then this bundle is something for you respectively your site!
 
-Depending on your configuration and your local environment, you can let the bundle return placeholders generated with 
+Depending on your configuration and your local environment, 
+you can let the bundle return placeholders generated with 
 [Primitive](https://github.com/fogleman/primitive) or [sqip](https://github.com/technopagan/sqip/blob/master/README.md).
 
 Installation
 ============
 
-You need to have the service installed which you want to use. Refer to their webpages linked above to get the installation guide.
+You need to have the service installed which you want to use. 
+Refer to their webpages linked above to get the installation guide.
 To install this bundle, refer to the following guide.
 
 Applications that use Symfony Flex
 ----------------------------------
 
-*(This installation type is not yet supported. Please refer to the next installations instructions or create a recipe.)*
+*(This installation type is not yet supported. 
+Please refer to the next installations instructions or create a recipe.)*
 Open a command console, enter your project directory and execute:
 
 ```console

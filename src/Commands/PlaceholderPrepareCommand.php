@@ -31,7 +31,7 @@ class PlaceholderPrepareCommand extends Command
 
         // the full command description shown when running the command with
         // the "--help" option
-            ->setHelp('This command creates the placeholders for all the images in your load_paths');
+            ->setHelp('This command creates the placeholders for all the images in your configured load_paths');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)

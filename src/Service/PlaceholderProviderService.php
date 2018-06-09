@@ -4,12 +4,19 @@ namespace BernhardWebstudio\PlaceholderBundle\Service;
 
 use BernhardWebstudio\PlaceholderBundle\Service\PlaceholderGeneratorInterface;
 
+/**
+ * PlaceholderProviderService is an abstraction layer/handler around the 
+ * PlaceholderGenerator to implement few types of placeholder returns
+ */
 class PlaceholderProviderService
 {
     protected $generator;
     protected $loadPaths;
     protected $outputPath;
 
+    /**
+     * The modes how a placeholder can be fetched
+     */
     const MODE_RAW = 'raw';
     const MODE_BASE_64 = 'base64';
     const MODE_URL = 'url';
@@ -18,14 +25,23 @@ class PlaceholderProviderService
     public function __construct(
         PlaceholderGeneratorInterface $generator,
         array $loadPaths = array(),
-        $outputPath = null
+        string $outputPath = null
     ) {
         $this->generator = $generator;
         $this->loadPaths = $loadPaths;
         $this->outputPath = $outputPath;
     }
 
-    public function getPlaceholder($inputfile, $mode = '')
+    /**
+     * Get the placeholder as a certain mode
+     * 
+     * @param string $inputfile the image to get the placeholder of
+     * @param string $mode the mode/kind of placeholder to be returned
+     * 
+     * @return string|null the placeholder as $mode. 
+     *                  Null if inputfile does not exist in the configured loadPaths
+     */
+    public function getPlaceholder(string $inputfile, string $mode = '')
     {
         // resolve input path
         $inputfile = $this->getInputPath($inputfile);
@@ -34,6 +50,8 @@ class PlaceholderProviderService
         }
         $outputfile = $this->getOutputPath($inputfile);
         if (!\file_exists($outputfile) || filemtime($inputfile) > filemtime($outputfile)) {
+            // the following line may throw exceptions. do they have to be catched?
+            // if so: what to do with the error?
             $this->generator->generate($inputfile, $outputfile);
         }
 
@@ -63,20 +81,25 @@ class PlaceholderProviderService
 
     /**
      * Get the actual path to a generated placeholder
+     * 
+     * @param string $filename the path of the file to get the outputpath of
      */
     public function getOutputPath(string $filename)
     {
         if ($this->outputPath) {
             // hash to make sure the file does not collide with a file with the same name
-            return $this->outputPath . "/" . sha1($filename);
+            return $this->outputPath . "/" . sha1($filename) . $this->generator->getOutputExtension();
         }
         return \dirname($filename) . "/" . $this->getOutputFileName(\basename($filename));
     }
 
     /**
      * Get the filename of an outputed placeholder
+     * 
+     * @param string $filename the file to get the name of the output of
+     * @return string
      */
-    protected function getOutputFileName($filename)
+    protected function getOutputFileName(string $filename)
     {
         $extension_pos = strrpos($filename, '.'); // find position of the last dot, so where the extension starts
         $thumb = substr($filename, 0, $extension_pos) . '_thumb' . substr($filename, $extension_pos);
@@ -86,6 +109,8 @@ class PlaceholderProviderService
 
     /**
      * Get the mimetype of a placeholder. Used e.g. in Conroller to return a suitable Response
+     * 
+     * @return string
      */
     public function getOutputMime()
     {
@@ -94,6 +119,9 @@ class PlaceholderProviderService
 
     /**
      * Get the actual path to an image
+     * 
+     * @param string $filename the name of the file to get the inputpath of
+     * @return string|null the path to the requested image
      */
     public function getInputPath(string $filename)
     {
@@ -112,6 +140,8 @@ class PlaceholderProviderService
      * Use these load paths e.g. for:
      * - dump command
      * - testing
+     * 
+     * @return array
      */
     public function getLoadPaths()
     {
@@ -122,8 +152,11 @@ class PlaceholderProviderService
      * URL-Encode SVGs in a rather compressive way.
      *
      * Inspiration: https://github.com/tigt/mini-svg-data-uri
+     * 
+     * @param string $svgPath path to the svg to encode
+     * @return string url encoded svg
      */
-    protected function svgUrlEncode($svgPath)
+    protected function svgUrlEncode(string $svgPath)
     {
         $data = \file_get_contents($svgPath);
         $data = \preg_replace('/\v(?:[\v\h]+)/', ' ', $data);
