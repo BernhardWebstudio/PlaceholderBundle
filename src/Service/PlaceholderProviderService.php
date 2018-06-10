@@ -5,7 +5,7 @@ namespace BernhardWebstudio\PlaceholderBundle\Service;
 use BernhardWebstudio\PlaceholderBundle\Service\PlaceholderGeneratorInterface;
 
 /**
- * PlaceholderProviderService is an abstraction layer/handler around the 
+ * PlaceholderProviderService is an abstraction layer/handler around the
  * PlaceholderGenerator to implement few types of placeholder returns
  */
 class PlaceholderProviderService
@@ -34,11 +34,11 @@ class PlaceholderProviderService
 
     /**
      * Get the placeholder as a certain mode
-     * 
+     *
      * @param string $inputfile the image to get the placeholder of
      * @param string $mode the mode/kind of placeholder to be returned
-     * 
-     * @return string|null the placeholder as $mode. 
+     *
+     * @return string|null the placeholder as $mode.
      *                  Null if inputfile does not exist in the configured loadPaths
      */
     public function getPlaceholder(string $inputfile, string $mode = '')
@@ -81,7 +81,7 @@ class PlaceholderProviderService
 
     /**
      * Get the actual path to a generated placeholder
-     * 
+     *
      * @param string $filename the path of the file to get the outputpath of
      */
     public function getOutputPath(string $filename)
@@ -95,7 +95,7 @@ class PlaceholderProviderService
 
     /**
      * Get the filename of an outputed placeholder
-     * 
+     *
      * @param string $filename the file to get the name of the output of
      * @return string
      */
@@ -109,7 +109,7 @@ class PlaceholderProviderService
 
     /**
      * Get the mimetype of a placeholder. Used e.g. in Conroller to return a suitable Response
-     * 
+     *
      * @return string
      */
     public function getOutputMime()
@@ -119,7 +119,7 @@ class PlaceholderProviderService
 
     /**
      * Get the actual path to an image
-     * 
+     *
      * @param string $filename the name of the file to get the inputpath of
      * @return string|null the path to the requested image
      */
@@ -140,7 +140,7 @@ class PlaceholderProviderService
      * Use these load paths e.g. for:
      * - dump command
      * - testing
-     * 
+     *
      * @return array
      */
     public function getLoadPaths()
@@ -152,7 +152,7 @@ class PlaceholderProviderService
      * URL-Encode SVGs in a rather compressive way.
      *
      * Inspiration: https://github.com/tigt/mini-svg-data-uri
-     * 
+     *
      * @param string $svgPath path to the svg to encode
      * @return string url encoded svg
      */

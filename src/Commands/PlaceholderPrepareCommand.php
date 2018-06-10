@@ -56,7 +56,10 @@ class PlaceholderPrepareCommand extends Command
                 if (!$dry) {
                     // do output images
                     try {
-                        $path = $this->provider->getPlaceholder($inputPath, PlaceholderProviderService::MODE_PATH);
+                        $path = $this->provider->getPlaceholder(
+                            $inputPath,
+                            PlaceholderProviderService::MODE_PATH
+                        );
                         $output->writeln($path . ' created.');
                     } catch (\Exception $e) {
                         $output->writeln($path . ' failed to be created.');
