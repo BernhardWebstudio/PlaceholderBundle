@@ -8,7 +8,7 @@
     <php>
         <ini name="error_reporting" value="-1" />
         <server name="KERNEL_CLASS" value="BernhardWebstudio\PlaceholderBundle\Tests\AppKernel" />
-        <env name="SYMFONY_DEPRECATIONS_HELPER" value="disabled" />
+        <env name="SYMFONY_DEPRECATIONS_HELPER" value="weak" />
     </php>
 
     <logging>
