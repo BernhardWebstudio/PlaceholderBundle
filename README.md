@@ -3,6 +3,7 @@
 [![Travis](https://img.shields.io/travis/BernhardWebstudio/PlaceholderBundle.svg?style=flat-square)](https://travis-ci.org/BernhardWebstudio/PlaceholderBundle)
 [![Coverage Status](https://img.shields.io/coveralls/github/BernhardWebstudio/PlaceholderBundle.svg?style=flat-square)](https://coveralls.io/github/BernhardWebstudio/PlaceholderBundle?branch=master)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FBernhardWebstudio%2FPlaceholderBundle.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FBernhardWebstudio%2FPlaceholderBundle?ref=badge_shield)
 
 What is this bundle?
 ============
@@ -144,3 +145,6 @@ Contributions are welcome. Just open a PR!
 - Add resized (thumbnail) placeholder generator
 - Pre-generate to be requested images using tha CacheWarmer
 - Create [Recipe](https://github.com/symfony/recipes)
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FBernhardWebstudio%2FPlaceholderBundle.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FBernhardWebstudio%2FPlaceholderBundle?ref=badge_large)
