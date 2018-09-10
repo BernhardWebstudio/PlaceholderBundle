@@ -1,17 +1,19 @@
 {
-    "name" : "bernhard-webstudio/placeholder-bundle",
-    "type" : "symfony-bundle",
-    "description" : "Symfony bundle to generate placeholders for images",
-    "keywords" : ["Symfony", "Placeholder"],
-    "homepage" : "https://github.com/BernhardWebstudio/PlaceholderBundle",
-    "license" : "MIT",
-    "authors" :
-    [
+    "name": "bernhard-webstudio/placeholder-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony bundle to generate placeholders for images",
+    "keywords": [
+        "Symfony",
+        "Placeholder"
+    ],
+    "homepage": "https://github.com/BernhardWebstudio/PlaceholderBundle",
+    "license": "MIT",
+    "authors": [
         {
-            "name" : "Tim Bernhard",
-            "email" : "tim@bernhard-webstudio.ch",
-            "homepage" : "http://genieblog.ch",
-            "role" : "Developer"
+            "name": "Tim Bernhard",
+            "email": "tim@bernhard-webstudio.ch",
+            "homepage": "http://genieblog.ch",
+            "role": "Developer"
         }
     ],
     "scripts": {
@@ -20,8 +22,8 @@
         "mess-detector": "vendor/bin/phpmd ./src text cleancode,unusedcode,codesize,design,naming",
         "code-sniffer": "./vendor/bin/phpcs --standard=PSR2 src",
         "code-sniffer-fix": "./vendor/bin/phpcbf --standard=PSR2 src"
-      },
-    "minimum-stability" : "stable",
+    },
+    "minimum-stability": "stable",
     "require": {
         "php": ">=7.0",
         "symfony/dependency-injection": "^3.0|^4.0",
@@ -32,12 +34,11 @@
         "symfony/console": "^3.0|^4.0",
         "symfony/asset": "^3.0|^4.0",
         "symfony/framework-bundle": "^3.0|^4.0",
-        "symfony/annotations-pack": "^1.0",
         "symfony/finder": "^3.0|^4.0"
     },
     "autoload": {
-        "psr-4": { 
-            "BernhardWebstudio\\PlaceholderBundle\\": "src/", 
+        "psr-4": {
+            "BernhardWebstudio\\PlaceholderBundle\\": "src/",
             "BernhardWebstudio\\PlaceholderBundle\\Tests\\": "Tests/"
         }
     },
