@@ -60,9 +60,12 @@ class PlaceholderPrepareCommand extends Command
                             $inputPath,
                             PlaceholderProviderService::MODE_PATH
                         );
-                        $output->writeln($path . ' created.');
+                        // be verbose and output reason for dump
+                        $reason = !\file_exists($outputPath) ? 'output did not yet exist' : 'input was newer';
+                        $output->writeln(sprintf('%s created from %s because %s.', $path, $inputPath, $reason));
+                        assert($path === $outputPath);
                     } catch (\Exception $e) {
-                        $output->writeln($path . ' failed to be created.');
+                        $output->writeln($path . ' failed to be created. Error message: "' . $e->getMessage() . '".');
                     }
                 } else {
                     // do output image path before and after
@@ -71,6 +74,6 @@ class PlaceholderPrepareCommand extends Command
             }
         }
 
-        $output->writeln("Processed " . count($finder) . ' images.');
+        $output->writeln('Processed ' . count($finder) . ' images.');
     }
 }
