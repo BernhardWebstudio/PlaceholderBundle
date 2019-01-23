@@ -7,14 +7,25 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use BernhardWebstudio\PlaceholderBundle\Service\PlaceholderProviderService;
 
 /**
  * @Route(name="bewe_")
  */
-class PlaceholderProviderController extends Controller
+class PlaceholderProviderController extends AbstractController
 {
+
+    /**
+     * @var PlaceholderProviderService
+     */
+    private $placeholderProvider;
+
+    public function __construct(PlaceholderProviderService $placeholderProvider)
+    {
+        $this->placeholderProvider = $placeholderProvider;
+    }
+
     /**
      * General route to get the placeholder of an image
      * Returns the image if existing, otherwise generates it
@@ -23,20 +34,14 @@ class PlaceholderProviderController extends Controller
      */
     public function placeholderAction(string $imagePath)
     {
-        //$imagePath = substr($imagePath, 0, -12); // substr /placeholder
-        /**
-         * @var PlaceholderProviderService
-         */
-        $providerService = $this->get('bewe_placeholder.provider');
-
-        if (!($input = $providerService->getInputPath($imagePath))) {
+        if (!($input = $this->placeholderProvider->getInputPath($imagePath))) {
             throw $this->createNotFoundException();
         }
 
-        $placeholderPath = $providerService->getPlaceholder($input);
+        $placeholderPath = $this->placeholderProvider->getPlaceholder($input);
 
         $response = new Response(\file_get_contents($placeholderPath), Response::HTTP_OK);
-        $response->headers->set('Content-Type', $providerService->getOutputMime());
+        $response->headers->set('Content-Type', $this->placeholderProvider->getOutputMime());
         $response->headers->set('Content-Disposition', ResponseHeaderBag::DISPOSITION_INLINE);
         return $response;
     }
