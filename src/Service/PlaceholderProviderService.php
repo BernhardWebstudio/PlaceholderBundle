@@ -88,7 +88,7 @@ class PlaceholderProviderService
     {
         if ($this->outputPath) {
             // hash to make sure the file does not collide with a file with the same name
-            return $this->outputPath . "/" . sha1($filename) . $this->generator->getOutputExtension();
+            return $this->outputPath . "/" . sha1($filename) . sha1_file($filename) . $this->generator->getOutputExtension();
         }
         return \dirname($filename) . "/" . $this->getOutputFileName(\basename($filename));
     }
