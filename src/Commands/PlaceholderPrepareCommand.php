@@ -25,6 +25,7 @@ class PlaceholderPrepareCommand extends Command
         // the name of the command (the part after "bin/console")
             ->setName('bewe:placeholder:prepare')
             ->addOption('dry')
+            ->addOption('ignore-exist')
 
         // the short description shown while running "php bin/console list"
             ->setDescription('Creates placeholders for all the images.')
@@ -52,7 +53,7 @@ class PlaceholderPrepareCommand extends Command
             $inputPath = $image->getRealPath();
             $outputPath = $this->provider->getOutputPath($inputPath);
             // only output if not already done in another session
-            if (!\file_exists($outputPath) || (filemtime($inputPath) > filemtime($outputPath))) {
+            if (!\file_exists($outputPath) || (!$input->getOption('ignore-exist') && filemtime($inputPath) > filemtime($outputPath))) {
                 if (!$dry) {
                     // do output images
                     try {
