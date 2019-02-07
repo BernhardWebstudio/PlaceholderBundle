@@ -23,7 +23,7 @@ class PlaceholderPrepareCommand extends Command
     {
         $this
         // the name of the command (the part after "bin/console")
-        ->setName('bewe:placeholder:prepare')
+            ->setName('bewe:placeholder:prepare')
             ->addOption('dry')
 
         // the short description shown while running "php bin/console list"
@@ -56,12 +56,12 @@ class PlaceholderPrepareCommand extends Command
                 if (!$dry) {
                     // do output images
                     try {
+                        $reason = $this->determineDumpReason($inputPath, $outputPath);
                         $path = $this->provider->getPlaceholder(
                             $inputPath,
                             PlaceholderProviderService::MODE_PATH
                         );
                         // be verbose and output reason for dump
-                        $reason = !\file_exists($outputPath) ? 'output did not yet exist' : 'input was newer';
                         $output->writeln(sprintf('%s created from %s because %s.', $path, $inputPath, $reason));
                         assert($path === $outputPath);
                     } catch (\Exception $e) {
@@ -75,5 +75,23 @@ class PlaceholderPrepareCommand extends Command
         }
 
         $output->writeln('Processed ' . count($finder) . ' images.');
+    }
+
+    /**
+     * Determine why an image will be created
+     *
+     * @param string $inputPath
+     * @param string $outputPath
+     * @return string
+     */
+    protected function determineDumpReason($inputPath, $outputPath)
+    {
+        if (!\file_exists($outputPath)) {
+            return 'output did not yet exist';
+        }
+        if (($inputDate = filemtime($inputPath)) > ($outputDate = filemtime($outputPath))) {
+            return 'input was newer: ' . date('d.m.Y h:i:s', $inputDate) . ' vs. ' . date('d.m.Y h:i:s', $outputDate);
+        }
+        return 'unknown reason';
     }
 }
