@@ -34,6 +34,10 @@ class BernhardWebstudioPlaceholderExtension extends Extension
             $providerDefinition->replaceArgument(2, $output_path);
         }
 
+        if (\array_key_exists('ignore_mtime', $config)) {
+            $providerDefinition->replaceArgument(3, $config['ignore_mtime']);
+        }
+
         $service = $config['service'];
         $serviceDefinition = $container->getDefinition($config['service']);
 

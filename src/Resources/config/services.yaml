@@ -23,7 +23,8 @@ services:
             - '@bewe_placeholder.generator'
             - ["."]
             - ~
-            # - '@logger'
+            - false
+            
     bewe_placeholder.generator.sqip:
         class: BernhardWebstudio\PlaceholderBundle\Service\SqipPlaceholderGenerator
         autowire: false

@@ -78,6 +78,9 @@ class BernhardWebstudioPlaceholderExtensionTest extends TestCase
         $this->assertEquals($config['service'], 'bewe_placeholder.generator.sqip');
         $this->assertNotEmpty($config['iterations']);
         $this->assertEquals($config['iterations'], 13);
+        // test default
+        $this->assertNotEmpty($config['ignore_mtime']);
+        $this->assertEquals($config['ignore_mtime'], false);
     }
 
     /**
@@ -94,6 +97,8 @@ class BernhardWebstudioPlaceholderExtensionTest extends TestCase
         $this->assertEquals($config['service'], 'bewe_placeholder.generator.primitive');
         $this->assertNotEmpty($config['iterations']);
         $this->assertEquals($config['iterations'], 13);
+        $this->assertNotEmpty($config['ignore_mtime']);
+        $this->assertEquals($config['ignore_mtime'], true);
     }
 
     /**

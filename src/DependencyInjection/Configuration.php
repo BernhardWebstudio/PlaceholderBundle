@@ -22,6 +22,7 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('bin')->end()
             ->scalarNode('node_bin')->end()
             ->scalarNode('output_path')->end()
+            ->scalarNode('ignore_mtime')->end()
             ->end();
 
         return $treeBuilder;

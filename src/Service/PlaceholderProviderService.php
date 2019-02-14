@@ -13,6 +13,7 @@ class PlaceholderProviderService
     protected $generator;
     protected $loadPaths;
     protected $outputPath;
+    protected $ignoreMtime;
 
     /**
      * The modes how a placeholder can be fetched
@@ -25,11 +26,13 @@ class PlaceholderProviderService
     public function __construct(
         PlaceholderGeneratorInterface $generator,
         array $loadPaths = array(),
-        string $outputPath = null
+        string $outputPath = null,
+        $ignoreMtime = false
     ) {
         $this->generator = $generator;
         $this->loadPaths = $loadPaths;
         $this->outputPath = $outputPath;
+        $this->ignoreMtime = $ignoreMtime;
     }
 
     /**
@@ -49,7 +52,7 @@ class PlaceholderProviderService
             return;
         }
         $outputfile = $this->getOutputPath($inputfile);
-        if (!\file_exists($outputfile) || filemtime($inputfile) > filemtime($outputfile)) {
+        if (!\file_exists($outputfile) || (!$this->ignoreMtime && filemtime($inputfile) > filemtime($outputfile))) {
             // the following line may throw exceptions. do they have to be catched?
             // if so: what to do with the error?
             $this->generator->generate($inputfile, $outputfile);
