@@ -3,6 +3,7 @@ language: php
 php:
   - '7.1'
   - '7.2'
+  - '7.3'
   - nightly
 
 go:
@@ -13,7 +14,7 @@ node_js:
 
 before_script:
     # fossa integration
-    - curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | sudo bash
+    - "curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | sudo bash"
     # go to be sure in case its a 32 bit machine. Also, it is easier this way
     - go get -u github.com/fogleman/primitive
     # setup environement by installing dependencies
@@ -25,6 +26,8 @@ before_script:
     - fossa
 
 script:
+    - fossa init
+    - fossa analyze
     - composer validate --strict --no-check-lock
     # simple-phpunit is the PHPUnit wrapper provided by the PHPUnit Bridge component and
     # it helps with testing legacy code and deprecations (composer require symfony/phpunit-bridge)
