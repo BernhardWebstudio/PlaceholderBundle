@@ -19,8 +19,7 @@ before_script:
     - go get -u github.com/fogleman/primitive
     # setup environement by installing dependencies
     - npm install
-    #- composer update --prefer-dist --no-interaction --prefer-stable --quiet
-    - composer install ${COMPOSER_FLAGS} --dev --prefer-dist --no-interaction
+    - composer update ${COMPOSER_FLAGS} --dev --prefer-dist --prefer-stable --no-interaction
     - ./vendor/bin/simple-phpunit install
 
 script:
