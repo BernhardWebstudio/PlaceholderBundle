@@ -17,11 +17,11 @@
         }
     ],
     "scripts": {
-        "test": "./vendor/bin/simple-phpunit",
-        "static-analysis": "vendor/bin/phpstan analyse src --level=0",
-        "mess-detector": "vendor/bin/phpmd ./src text cleancode,unusedcode,codesize,design,naming",
-        "code-sniffer": "./vendor/bin/phpcs --standard=PSR2 src",
-        "code-sniffer-fix": "./vendor/bin/phpcbf --standard=PSR2 src"
+        "test": "./bin/simple-phpunit",
+        "static-analysis": "./bin/phpstan analyse src --level=0",
+        "mess-detector": "./bin/phpmd ./src text cleancode,unusedcode,codesize,design,naming",
+        "code-sniffer": "./bin/phpcs --standard=PSR2 src",
+        "code-sniffer-fix": "./bin/phpcbf --standard=PSR2 src"
     },
     "minimum-stability": "stable",
     "require": {
