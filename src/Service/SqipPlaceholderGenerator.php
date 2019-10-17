@@ -10,6 +10,7 @@ class SqipPlaceholderGenerator extends AbstractNodeExecGenerator
     protected $bin = "sqip";
     protected $node_bin = "node";
     protected $iterations = 5;
+    protected $blur = 0;
 
     public function __construct($bin = "sqip", $node_bin = "node", $iterations = 5)
     {
@@ -23,7 +24,7 @@ class SqipPlaceholderGenerator extends AbstractNodeExecGenerator
      */
     public function generate($input, $output)
     {
-        $process = new Process(array($this->node_bin, $this->bin, '-n', $this->iterations, '-o', $output, $input));
+        $process = new Process(array($this->node_bin, $this->bin, '-i', $input, '-n', $this->iterations, '-b', $this->blur, '-o', $output));
         $process->mustRun();
         return $process->getOutput();
     }

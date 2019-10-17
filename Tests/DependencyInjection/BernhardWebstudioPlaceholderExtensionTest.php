@@ -79,7 +79,7 @@ class BernhardWebstudioPlaceholderExtensionTest extends TestCase
         $this->assertNotEmpty($config['iterations']);
         $this->assertEquals($config['iterations'], 13);
         // test default
-        $this->assertNotEmpty($config['ignore_mtime']);
+        $this->assertArrayHasKey('ignore_mtime', $config);
         $this->assertEquals($config['ignore_mtime'], false);
     }
 

@@ -1,7 +1,6 @@
 language: php
 
 php:
-  - '7.1'
   - '7.2'
   - '7.3'
   - nightly
@@ -20,7 +19,7 @@ before_script:
     # setup environement by installing dependencies
     - npm install
     - composer update ${COMPOSER_FLAGS} --dev --prefer-dist --prefer-stable --no-interaction
-    - ./bin/simple-phpunit install
+    - ./vendor/bin/simple-phpunit install
 
 script:
     # run fossa to upload a dependency report back to the FOSSA instance.
@@ -30,11 +29,11 @@ script:
     - composer validate --strict --no-check-lock
     # simple-phpunit is the PHPUnit wrapper provided by the PHPUnit Bridge component and
     # it helps with testing legacy code and deprecations (composer require symfony/phpunit-bridge)
-    #- ./bin/simple-phpunit $PHPUNIT_FLAGS
+    #- ./vendor/bin/simple-phpunit $PHPUNIT_FLAGS
     - composer run code-sniffer
     - composer run test
     - composer run static-analysis
     #- composer run mess-detector
 
 after_success:
-  - travis_retry php ./bin/php-coveralls -v
+  - travis_retry php ./vendor/bin/php-coveralls -v
