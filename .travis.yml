@@ -11,6 +11,10 @@ go:
 node_js:
   - "node"
 
+jobs:
+  allow_failures:
+    - php: nightly
+
 before_script:
     # fossa integration
     - "curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | sudo bash"
