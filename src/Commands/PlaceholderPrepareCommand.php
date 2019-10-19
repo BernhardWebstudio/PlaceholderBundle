@@ -22,16 +22,16 @@ class PlaceholderPrepareCommand extends Command
     protected function configure()
     {
         $this
-        // the name of the command (the part after "bin/console")
+            // the name of the command (the part after "bin/console")
             ->setName('bewe:placeholder:prepare')
             ->addOption('dry')
             ->addOption('ignore-mtime')
 
-        // the short description shown while running "php bin/console list"
+            // the short description shown while running "php bin/console list"
             ->setDescription('Creates placeholders for all the images.')
 
-        // the full command description shown when running the command with
-        // the "--help" option
+            // the full command description shown when running the command with
+            // the "--help" option
             ->setHelp('This command creates the placeholders for all the images in your configured load_paths');
     }
 
@@ -54,7 +54,9 @@ class PlaceholderPrepareCommand extends Command
             $outputPath = $this->provider->getOutputPath($inputPath);
             // only output if not already done in another session
             // TODO: accept ignore_mtime in parameters too
-            if (!\file_exists($outputPath) || (!$input->getOption('ignore-mtime') && filemtime($inputPath) > filemtime($outputPath))) {
+            if (!\file_exists($outputPath)
+                || (!$input->getOption('ignore-mtime') && filemtime($inputPath) > filemtime($outputPath))
+            ) {
                 if (!$dry) {
                     // do output images
                     try {

@@ -52,7 +52,10 @@ class PlaceholderProviderService
             return;
         }
         $outputfile = $this->getOutputPath($inputfile);
-        if (!\file_exists($outputfile) || (!$this->ignoreMtime && filemtime($inputfile) > filemtime($outputfile))) {
+        if (!\file_exists($outputfile)
+            || (!$this->ignoreMtime
+                && filemtime($inputfile) > filemtime($outputfile))
+        ) {
             // the following line may throw exceptions. do they have to be catched?
             // if so: what to do with the error?
             $this->generator->generate($inputfile, $outputfile);
@@ -62,8 +65,8 @@ class PlaceholderProviderService
             case self::MODE_BASE_64:
                 return \base64_encode(\file_get_contents($outputfile));
                 break;
-            // alternative: serve the path to the controller instead.
-            // This way, the time used to serve can be reduced
+                // alternative: serve the path to the controller instead.
+                // This way, the time used to serve can be reduced
             case self::MODE_RAW:
                 return \file_get_contents($outputfile);
                 break;
@@ -91,7 +94,10 @@ class PlaceholderProviderService
     {
         if ($this->outputPath) {
             // hash to make sure the file does not collide with a file with the same name
-            return $this->outputPath . "/" . sha1($filename) . sha1_file($filename) . $this->generator->getOutputExtension();
+            return $this->outputPath . "/"
+                . sha1($filename)
+                . sha1_file($filename)
+                . $this->generator->getOutputExtension();
         }
         return \dirname($filename) . "/" . $this->getOutputFileName(\basename($filename));
     }
