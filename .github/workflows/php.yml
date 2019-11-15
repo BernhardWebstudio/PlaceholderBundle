@@ -30,12 +30,10 @@ jobs:
 
     - name: Run test suite
       run: composer run test
-      if: command -v primitive
+     # if: command -v primitive
     
     - name: Debug Primitive installation
-      env: 
-        PRIMITIVE_NOT_INSTALLED: ${{ ! command -v primitive }}
-      if: $PRIMITIVE_NOT_INSTALLED
+      if: failure()
       run: |
         echo $PATH
         ls
