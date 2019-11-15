@@ -11,21 +11,22 @@ jobs:
     - uses: actions/checkout@v1
     - uses: actions/setup-go@v1
 
+    - name: Install primitive
+      run: |
+        export PATH=${PATH}:`go env GOPATH`/bin
+        go get -u github.com/fogleman/primitive
+        primitive -V
+
     - name: Validate composer.json and composer.lock
       run: composer validate
 
     - name: Install Composer dependencies
-      run: composer install --dev --prefer-dist --no-progress --no-suggest --no-interaction
-    
-    # go to be sure in case its a 32 bit machine. Also, it is easier this way
-    - name: Install primitive
-      run: go get -u github.com/fogleman/primitive
-    
-    - name: Add go to PATH for primitive
-      run: export PATH=${PATH}:`go env GOPATH`/bin
+      run: |
+        composer install --dev --prefer-dist --no-progress --no-suggest --no-interaction
+        ./bin/simple-phpunit install 
     
     - name: Install NodeJS dependencies
       run: npm install
 
     - name: Run test suite
-      run: ./bin/simple-phpunit install && composer run test
+      run: composer run test
