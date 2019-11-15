@@ -29,7 +29,10 @@ jobs:
       run: npm install
 
     - name: Run test suite
-      run: composer run test
+      run: |
+        # for some reason, another path export is necessary
+        export PATH=${PATH}:`go env GOPATH`/bin
+        composer run test
      # if: command -v primitive
     
     - name: Debug Primitive installation
@@ -39,4 +42,5 @@ jobs:
         ls
         ls -R $( go env GOPATH )
         go get -u github.com/fogleman/primitive
+        export PATH=${PATH}:`go env GOPATH`/bin
         composer run test
