@@ -15,7 +15,7 @@ jobs:
       run: |
         export PATH=${PATH}:`go env GOPATH`/bin
         go get -u github.com/fogleman/primitive
-        primitive -V
+      # primitive -V
 
     - name: Validate composer.json and composer.lock
       run: composer validate
