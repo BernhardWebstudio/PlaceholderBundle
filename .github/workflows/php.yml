@@ -21,6 +21,9 @@ jobs:
     - name: Install primitive
       run: go get -u github.com/fogleman/primitive
     
+    - name: Add go to PATH for primitive
+      run: export PATH=${PATH}:`go env GOPATH`/bin
+    
     - name: Install NodeJS dependencies
       run: npm install
 
