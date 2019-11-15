@@ -14,10 +14,14 @@ jobs:
       run: composer validate
 
     - name: Install Composer dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest
+      run: composer install --dev --prefer-dist --no-progress --no-suggest --no-interaction
+    
+    # go to be sure in case its a 32 bit machine. Also, it is easier this way
+    - name: Install primitive
+      run: go get -u github.com/fogleman/primitive
     
     - name: Install NodeJS dependencies
-      run: yarn install
+      run: npm install
 
     - name: Run test suite
-      run: composer run test
+      run: ./bin/simple-phpunit install && composer run test
