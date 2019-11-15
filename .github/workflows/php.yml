@@ -30,3 +30,11 @@ jobs:
 
     - name: Run test suite
       run: composer run test
+      if: command -v primitive
+    
+    - name: Debug Primitive installation
+      if: ! command -v primitive
+      run: |
+        echo $PATH
+        ls
+        which primitive
