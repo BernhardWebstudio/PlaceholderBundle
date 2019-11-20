@@ -1,0 +1,4 @@
+# rector-ci.yaml
+parameters:
+    sets:
+        - "dead-code"

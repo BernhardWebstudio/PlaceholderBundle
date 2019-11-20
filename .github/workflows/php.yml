@@ -27,6 +27,9 @@ jobs:
     
     - name: Install NodeJS dependencies
       run: npm install
+    
+    - name: Code Review
+      run: ./bin/rector process --config rector-ci.yaml --dry-run
 
     - name: Run test suite
       run: |
