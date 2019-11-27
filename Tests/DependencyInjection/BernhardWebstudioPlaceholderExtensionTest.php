@@ -28,7 +28,7 @@ class BernhardWebstudioPlaceholderExtensionTest extends TestCase
     /**
      *
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->extension = new BernhardWebstudioPlaceholderExtension();
 

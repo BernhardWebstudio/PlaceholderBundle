@@ -12,7 +12,7 @@ class PlaceholderPrepareCommandTest extends KernelTestCase
 {
     protected $application;
 
-    public function setUp() {
+    public function setUp(): void {
         static::$kernel = static::createKernel();
         static::$kernel->boot();
         $this->application = new Application(static::$kernel);
@@ -33,6 +33,6 @@ class PlaceholderPrepareCommandTest extends KernelTestCase
 
         // the output of the command in the console
         $output = $commandTester->getDisplay();
-        $this->assertContains('Dry run', $output);
+        $this->assertStringContainsString('Dry run', $output);
     }
 }

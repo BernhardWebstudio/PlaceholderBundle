@@ -13,7 +13,7 @@ class PlaceholderExtensionTest extends WebTestCase
      */
     protected $extension;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         self::bootKernel();
         $client = static::createClient();

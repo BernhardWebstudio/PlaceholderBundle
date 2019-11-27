@@ -29,7 +29,7 @@ class PlaceholderProviderControllerTest extends WebTestCase
     /**
      *
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         self::bootKernel();
         $this->client = static::createClient();
