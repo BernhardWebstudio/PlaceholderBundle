@@ -3,7 +3,5 @@ parameters:
 
 framework:
   test: ~
-  templating:
-        engines: ['twig', 'php']
   router:
         resource: "%kernel.root_dir%/../src/Resources/config/routing.yaml"

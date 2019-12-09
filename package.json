@@ -2,6 +2,7 @@
   "dependencies": {
     "sqip": "^0.3.3",
     "sqip-cli": "^1.0.0-alpha.27",
+    "sqip-plugin-blur": "^1.0.0-alpha.22",
     "sqip-plugin-data-uri": "^1.0.0-alpha.28",
     "sqip-plugin-primitive": "^1.0.0-alpha.22",
     "sqip-plugin-svgo": "^1.0.0-alpha.28"

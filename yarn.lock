@@ -2034,6 +2034,13 @@ sqip-cli@^1.0.0-alpha.27:
     command-line-usage "^5.0.5"
     sqip "^1.0.0-alpha.26"
 
+sqip-plugin-blur@^1.0.0-alpha.22:
+  version "1.0.0-alpha.22"
+  resolved "https://registry.yarnpkg.com/sqip-plugin-blur/-/sqip-plugin-blur-1.0.0-alpha.22.tgz#e0cf7a51764dacedab086d911feaf70fdfaeae27"
+  integrity sha512-hYgCDkPSqVYrTKCyuuvahQPJF2OYZ6CexpAAck3mjmHeYRVdWWvG1B02ZC6XbmzNKSTSEIrGKd+Nu+FVRvgLoA==
+  dependencies:
+    sqip "^1.0.0-alpha.22+b17d88e"
+
 sqip-plugin-data-uri@^1.0.0-alpha.28:
   version "1.0.0-alpha.29"
   resolved "https://registry.yarnpkg.com/sqip-plugin-data-uri/-/sqip-plugin-data-uri-1.0.0-alpha.29.tgz#9d24f199ee87c9714ab0ead0087e9f3dda875546"
