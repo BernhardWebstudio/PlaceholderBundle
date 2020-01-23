@@ -140,11 +140,12 @@ Contributions
 
 Contributions are welcome. Just open a PR!
 
-## TODO
-
-- Add resized (thumbnail) placeholder generator
-- Pre-generate to be requested images using tha CacheWarmer
-- Create [Recipe](https://github.com/symfony/recipes)
-
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FBernhardWebstudio%2FPlaceholderBundle.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FBernhardWebstudio%2FPlaceholderBundle?ref=badge_large)
+
+bernhard-webstudio/placeholder-bundle for enterprise
+============
+
+Available as part of the Tidelift Subscription
+
+The maintainers of bernhard-webstudio/placeholder-bundle and thousands of other packages are working with Tidelift to deliver commercial support and maintenance for the open source dependencies you use to build your applications. Save time, reduce risk, and improve code health, while paying the maintainers of the exact dependencies you use. [Learn more.](https://tidelift.com/subscription/pkg/packagist-bernhard-webstudio-placeholder-bundle?utm_source=packagist-bernhard-webstudio-placeholder-bundle&utm_medium=referral&utm_campaign=enterprise&utm_term=repo)
