@@ -5,6 +5,23 @@
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FBernhardWebstudio%2FPlaceholderBundle.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FBernhardWebstudio%2FPlaceholderBundle?ref=badge_shield)
 
+- [PlaceholderBundle](#placeholderbundle)
+- [What is this bundle?](#what-is-this-bundle)
+- [Installation](#installation)
+  - [Applications that use Symfony Flex](#applications-that-use-symfony-flex)
+  - [Applications that don't use Symfony Flex](#applications-that-dont-use-symfony-flex)
+    - [Step 1: Download the Bundle](#step-1-download-the-bundle)
+    - [Step 2: Enable the Bundle](#step-2-enable-the-bundle)
+- [Configuration](#configuration)
+- [Usage](#usage)
+  - [In a Controller or Service](#in-a-controller-or-service)
+  - [In Twig](#in-twig)
+  - [Just the URL, please](#just-the-url-please)
+  - [Pregenerate images](#pregenerate-images)
+- [Contributions](#contributions)
+  - [License](#license)
+- [bernhard-webstudio/placeholder-bundle for enterprise](#bernhard-webstudioplaceholder-bundle-for-enterprise)
+
 What is this bundle?
 ============
 
