@@ -29,6 +29,8 @@
 
 # Managed by NPM
 /node_modules/
+/package.lock
+/yarn.lock
 
 # Assets and user uploads
 /web/bundles/
@@ -38,6 +40,7 @@
 /app/phpunit.xml
 /phpunit.xml
 /Tests/cache
+/.phpunit.result.cache
 
 # Build data
 /build/
@@ -48,3 +51,4 @@
 
 # IDEs
 .vscode/
+
