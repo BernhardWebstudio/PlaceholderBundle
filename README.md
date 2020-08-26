@@ -1,5 +1,6 @@
 # PlaceholderBundle
 
+![GitHub Tests](https://github.com/BernhardWebstudio/PlaceholderBundle/workflows/PHP%20Tests/badge.svg)
 [![Travis](https://img.shields.io/travis/BernhardWebstudio/PlaceholderBundle.svg?style=flat-square)](https://travis-ci.org/BernhardWebstudio/PlaceholderBundle)
 [![Coverage Status](https://img.shields.io/coveralls/github/BernhardWebstudio/PlaceholderBundle.svg?style=flat-square)](https://coveralls.io/github/BernhardWebstudio/PlaceholderBundle?branch=master)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://opensource.org/licenses/MIT)
