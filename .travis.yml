@@ -9,7 +9,7 @@ go:
   - "1.x"
 
 node_js:
-  - "node"
+  - "lts/*"
 
 jobs:
   allow_failures:
