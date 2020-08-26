@@ -1,43 +1,43 @@
 language: php
 
 php:
-  - '7.2'
-  - '7.3'
+  - "7.2"
+  - "7.3"
   - nightly
 
 go:
   - "1.x"
 
 node_js:
-  - "lts/*"
+  - "14"
 
 jobs:
   allow_failures:
     - php: nightly
 
 before_script:
-    # fossa integration
-    - "curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | sudo bash"
-    # go to be sure in case its a 32 bit machine. Also, it is easier this way
-    - go get -u github.com/fogleman/primitive
-    # setup environement by installing dependencies
-    - npm install
-    - composer update ${COMPOSER_FLAGS} --dev --prefer-dist --prefer-stable --no-interaction
-    - ./bin/simple-phpunit install
+  # fossa integration
+  - "curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | sudo bash"
+  # go to be sure in case its a 32 bit machine. Also, it is easier this way
+  - go get -u github.com/fogleman/primitive
+  # setup environement by installing dependencies
+  - npm install
+  - composer update ${COMPOSER_FLAGS} --dev --prefer-dist --prefer-stable --no-interaction
+  - ./bin/simple-phpunit install
 
 script:
-    # run fossa to upload a dependency report back to the FOSSA instance.
-    - fossa init
-    - fossa analyze
-    - fossa
-    - composer validate --strict --no-check-lock
-    # simple-phpunit is the PHPUnit wrapper provided by the PHPUnit Bridge component and
-    # it helps with testing legacy code and deprecations (composer require symfony/phpunit-bridge)
-    #- ./bin/simple-phpunit $PHPUNIT_FLAGS
-    - composer run code-sniffer
-    - composer run test
-    - composer run static-analysis
-    #- composer run mess-detector
+  # run fossa to upload a dependency report back to the FOSSA instance.
+  - fossa init
+  - fossa analyze
+  - fossa
+  - composer validate --strict --no-check-lock
+  # simple-phpunit is the PHPUnit wrapper provided by the PHPUnit Bridge component and
+  # it helps with testing legacy code and deprecations (composer require symfony/phpunit-bridge)
+  #- ./bin/simple-phpunit $PHPUNIT_FLAGS
+  - composer run code-sniffer
+  - composer run test
+  - composer run static-analysis
+  #- composer run mess-detector
 
 after_success:
   - travis_retry php ./bin/php-coveralls -v
