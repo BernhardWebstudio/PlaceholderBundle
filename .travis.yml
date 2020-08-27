@@ -3,19 +3,21 @@ language: php
 php:
   - "7.2"
   - "7.3"
+  - "7.4"
   - nightly
 
 go:
   - "1.x"
 
-node_js:
-  - "14"
+# node_js:
+#   - "14"
 
 jobs:
   allow_failures:
     - php: nightly
 
 before_script:
+  - nvm install 14.8
   # fossa integration
   - "curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | sudo bash"
   # go to be sure in case its a 32 bit machine. Also, it is easier this way
