@@ -1,8 +1,8 @@
 language: php
 
 php:
-  - "7.3"
   - "7.4"
+  - "8.0"
   - nightly
 
 go:
@@ -36,7 +36,7 @@ script:
   # it helps with testing legacy code and deprecations (composer require symfony/phpunit-bridge)
   #- ./bin/simple-phpunit $PHPUNIT_FLAGS
   - composer run code-sniffer
-  - composer run test
+  - XDEBUG_MODE=coverage composer run test
   - composer run static-analysis
   #- composer run mess-detector
 
