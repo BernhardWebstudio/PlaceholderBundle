@@ -1,4 +1,5 @@
 <?php
+
 namespace BernhardWebstudio\PlaceholderBundle\Tests;
 
 use Symfony\Component\HttpKernel\Kernel;
@@ -39,6 +40,7 @@ class AppKernel extends Kernel
         $this->addConfigFile(__DIR__ . '/config.yaml');
         $this->addConfigFile(__DIR__ . '/../src/Resources/config/services.yaml');
     }
+
     /**
      * @param string $bundleClassName class name of bundle
      */
@@ -46,6 +48,7 @@ class AppKernel extends Kernel
     {
         $this->bundlesToRegister[] = $bundleClassName;
     }
+
     /**
      * @param string $configFile path to config file
      */
@@ -53,6 +56,7 @@ class AppKernel extends Kernel
     {
         $this->configFiles[] = $configFile;
     }
+
     public function registerBundles()
     {
         $this->bundlesToRegister = array_unique($this->bundlesToRegister);
@@ -62,6 +66,7 @@ class AppKernel extends Kernel
         }
         return $bundles;
     }
+    
     /**
      * {@inheritdoc}
      */

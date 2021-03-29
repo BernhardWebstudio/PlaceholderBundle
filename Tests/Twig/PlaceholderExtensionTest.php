@@ -15,7 +15,7 @@ class PlaceholderExtensionTest extends WebTestCase
 
     protected function setUp(): void
     {
-        self::bootKernel();
+        // self::bootKernel();
         $client = static::createClient();
         $container = $client->getContainer();
 
@@ -29,7 +29,7 @@ class PlaceholderExtensionTest extends WebTestCase
 
         $functions = $this->extension->getFunctions();
         foreach ($functions as $function) {
-            $this->assertInstanceof(\Twig_SimpleFunction::class, $function);
+            $this->assertInstanceof(\Twig\TwigFunction::class, $function);
         }
     }
 
@@ -40,7 +40,7 @@ class PlaceholderExtensionTest extends WebTestCase
 
         $filters = $this->extension->getFilters();
         foreach ($filters as $filter) {
-            $this->assertInstanceof(\Twig_SimpleFilter::class, $filter);
+            $this->assertInstanceof(\Twig\TwigFilter::class, $filter);
         }
         $this->assertEquals('placeholder', $filters[0]->getName());
     }

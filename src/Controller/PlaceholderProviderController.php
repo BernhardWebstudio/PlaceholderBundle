@@ -18,6 +18,7 @@ class PlaceholderProviderController extends AbstractController
 
     /**
      * @var PlaceholderProviderService
+     * @required
      */
     private $placeholderProvider;
 

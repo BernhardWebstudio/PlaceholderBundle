@@ -4,4 +4,12 @@ parameters:
 framework:
   test: ~
   router:
-        resource: "%kernel.root_dir%/../src/Resources/config/routing.yaml"
+        resource: "%kernel.project_dir%/src/Resources/config/routing.yaml"
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    BernhardWebstudio\PlaceholderBundle\Controller\PlaceholderProviderController:
+        autowire: true

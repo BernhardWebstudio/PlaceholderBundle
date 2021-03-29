@@ -4,7 +4,7 @@ namespace BernhardWebstudio\PlaceholderBundle\Twig;
 
 use BernhardWebstudio\PlaceholderBundle\Service\PlaceholderProviderService;
 
-class PlaceholderExtension extends \Twig_Extension
+class PlaceholderExtension extends \Twig\Extension\AbstractExtension
 {
     protected $placeholderProvider;
 
@@ -16,7 +16,7 @@ class PlaceholderExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('placeholder', array($this, 'getPlaceholder'))
+            new \Twig\TwigFilter('placeholder', array($this, 'getPlaceholder'))
         );
     }
 

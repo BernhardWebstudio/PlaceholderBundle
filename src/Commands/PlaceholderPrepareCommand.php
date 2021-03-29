@@ -79,6 +79,7 @@ class PlaceholderPrepareCommand extends Command
         }
 
         $output->writeln('Processed ' . count($finder) . ' images.');
+        return 0;
     }
 
     /**
