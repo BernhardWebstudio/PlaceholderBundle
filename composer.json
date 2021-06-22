@@ -36,6 +36,20 @@
         "symfony/framework-bundle": "^v5.2.4",
         "symfony/finder": "^v5.2.4"
     },
+    "require-dev": {
+        "php-coveralls/php-coveralls": "^v2.2.0",
+        "phpmd/phpmd": "^2.8.1",
+        "phpstan/phpstan": "^0.12.88",
+        "rector/rector": "^0.11.20",
+        "sensio/framework-extra-bundle": "^v6.1.1",
+        "squizlabs/php_codesniffer": "^3.5.3",
+        "symfony/browser-kit": "^v5.2.4",
+        "symfony/css-selector": "^v5.2.4",
+        "symfony/phpunit-bridge": "^5.2",
+        "symfony/templating": "^v5.2.4",
+        "symfony/twig-bundle": "^v5.2.4",
+        "twig/twig": "^v3.3.2"
+    },
     "autoload": {
         "psr-4": {
             "BernhardWebstudio\\PlaceholderBundle\\": "src/",
@@ -45,19 +59,5 @@
     "config": {
         "sort-packages": true,
         "bin-dir": "bin"
-    },
-    "require-dev": {
-        "php-coveralls/php-coveralls": "^v2.2.0",
-        "phpmd/phpmd": "^2.8.1",
-        "phpstan/phpstan": "^0.12.19",
-        "rector/rector": "^0.10.3",
-        "sensio/framework-extra-bundle": "^v6.1.1",
-        "squizlabs/php_codesniffer": "^3.5.3",
-        "symfony/browser-kit": "^v5.2.4",
-        "symfony/css-selector": "^v5.2.4",
-        "symfony/phpunit-bridge": "^5.2",
-        "symfony/templating": "^v5.2.4",
-        "symfony/twig-bundle": "^v5.2.4",
-        "twig/twig": "^v2.14.4"
     }
 }
