@@ -7,7 +7,7 @@ use BernhardWebstudio\PlaceholderBundle\DependencyInjection\BernhardWebstudioPla
 
 class BernhardWebstudioPlaceholderBundle extends Bundle
 {
-    public function getContainerExtension()
+    public function getContainerExtension(): ?\Symfony\Component\DependencyInjection\Extension\ExtensionInterface
     {
         return new BernhardWebstudioPlaceholderExtension();
     }

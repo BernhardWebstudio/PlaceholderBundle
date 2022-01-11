@@ -25,7 +25,7 @@
     },
     "minimum-stability": "stable",
     "require": {
-        "php": ">=7.0",
+        "php": ">=8.0",
         "symfony/dependency-injection": "^v5.2.4|v6.0.0",
         "symfony/process": "^v5.2.4|v6.0.0",
         "symfony/config": "^v5.2.4|v6.0.0",
