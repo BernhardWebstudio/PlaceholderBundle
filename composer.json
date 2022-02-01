@@ -33,7 +33,7 @@
         "symfony/http-kernel": "^v5.2.4|v6.0.0",
         "symfony/console": "^v5.2.4|v6.0.0",
         "symfony/asset": "^v5.2.4|v6.0.0",
-        "symfony/framework-bundle": "^v5.2.4|v6.0.0",
+        "symfony/framework-bundle": "^6.0.4",
         "symfony/finder": "^v5.2.4|v6.0.0"
     },
     "require-dev": {
