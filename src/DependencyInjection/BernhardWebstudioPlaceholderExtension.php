@@ -62,7 +62,7 @@ class BernhardWebstudioPlaceholderExtension extends Extension
         $container->setParameter($this->getAlias(), $config);
     }
 
-    public function getAlias()
+    public function getAlias(): string
     {
         return "bewe_placeholder";
     }
