@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "sqip": "^1.0.0-alpha.38",
+    "sqip-cli": "^1.0.0-alpha.43",
     "sqip-plugin-data-uri": "^1.0.0-alpha.39",
     "sqip-plugin-primitive": "^1.0.0-alpha.40",
     "sqip-plugin-svgo": "^1.0.0-alpha.40"
