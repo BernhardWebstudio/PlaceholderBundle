@@ -30,7 +30,7 @@
         "symfony/process": "^v5.2.4|v6.0.0|v6.1.0",
         "symfony/config": "^v5.2.4|v6.0.0|v6.1.0",
         "symfony/yaml": "^v5.2.4|v6.0.0|v6.1.0",
-        "symfony/http-kernel": "^v5.2.4|v6.0.0|v6.1.0",
+        "symfony/http-kernel": "^6.1.12",
         "symfony/console": "^v5.2.4|v6.0.0|v6.1.0",
         "symfony/asset": "^v5.2.4|v6.0.0|v6.1.0",
         "symfony/framework-bundle": "^6.0.4",
