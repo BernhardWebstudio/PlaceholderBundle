@@ -54,3 +54,7 @@
 
 
 package-lock.json
+Test/var/log
+Test/var/cache
+var/log
+var/cache
