@@ -3,6 +3,7 @@
 namespace BernhardWebstudio\PlaceholderBundle\Commands;
 
 use BernhardWebstudio\PlaceholderBundle\Service\PlaceholderProviderService;
+use Exception;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -13,7 +14,7 @@ class PlaceholderPrepareCommand extends Command
 
     protected $provider;
 
-    public function __construct(PlaceholderProviderService $provider)
+    public function __construct(PlaceholderProviderService $provider = null)
     {
         $this->provider = $provider;
         parent::__construct();
@@ -37,6 +38,10 @@ class PlaceholderPrepareCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        if ($this->provider === null) {
+            throw new Exception("The Placeholder Provider Service was not automatically injected. You have probably misconfigured the DI-container.");
+        }
+
         $dry = $input->getOption('dry');
         if ($dry) {
             $output->writeln("Dry run. No images will be generated.");
@@ -47,38 +52,44 @@ class PlaceholderPrepareCommand extends Command
             $finder->in($path);
         }
 
-        $finder->files();
-        // loop the images to be generated inside
-        foreach ($finder as $image) {
-            $inputPath = $image->getRealPath();
-            $outputPath = $this->provider->getOutputPath($inputPath);
-            // only output if not already done in another session
-            // TODO: accept ignore_mtime in parameters too
-            if (!\file_exists($outputPath)
-                || (!$input->getOption('ignore-mtime') && filemtime($inputPath) > filemtime($outputPath))
-            ) {
-                if (!$dry) {
-                    // do output images
-                    try {
-                        $reason = $this->determineDumpReason($inputPath, $outputPath);
-                        $path = $this->provider->getPlaceholder(
-                            $inputPath,
-                            PlaceholderProviderService::MODE_PATH
-                        );
-                        // be verbose and output reason for dump
-                        $output->writeln(sprintf('%s created from %s because %s.', $path, $inputPath, $reason));
-                        assert($path === $outputPath);
-                    } catch (\Exception $e) {
-                        $output->writeln($path . ' failed to be created. Error message: "' . $e->getMessage() . '".');
+        if (count($this->provider->getLoadPaths()) > 0) {
+
+            $finder->files();
+            // loop the images to be generated inside
+            foreach ($finder as $image) {
+                $inputPath = $image->getRealPath();
+                $outputPath = $this->provider->getOutputPath($inputPath);
+                // only output if not already done in another session
+                // TODO: accept ignore_mtime in parameters too
+                if (
+                    !\file_exists($outputPath)
+                    || (!$input->getOption('ignore-mtime') && filemtime($inputPath) > filemtime($outputPath))
+                ) {
+                    if (!$dry) {
+                        // do output images
+                        try {
+                            $reason = $this->determineDumpReason($inputPath, $outputPath);
+                            $path = $this->provider->getPlaceholder(
+                                $inputPath,
+                                PlaceholderProviderService::MODE_PATH
+                            );
+                            // be verbose and output reason for dump
+                            $output->writeln(sprintf('%s created from %s because %s.', $path, $inputPath, $reason));
+                            assert($path === $outputPath);
+                        } catch (\Exception $e) {
+                            $output->writeln($path . ' failed to be created. Error message: "' . $e->getMessage() . '".');
+                        }
+                    } else {
+                        // do output image path before and after
+                        $output->writeln($inputPath . ' would have been processed to ' . $outputPath . '.');
                     }
-                } else {
-                    // do output image path before and after
-                    $output->writeln($inputPath . ' would have been processed to ' . $outputPath . '.');
                 }
             }
+            $output->writeln('Processed ' . count($finder) . ' images.');
+        } else {
+            $output->writeln('Processed ' . 0 . ' images.');
         }
 
-        $output->writeln('Processed ' . count($finder) . ' images.');
         return 0;
     }
 

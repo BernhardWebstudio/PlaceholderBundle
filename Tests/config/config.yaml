@@ -1,0 +1,13 @@
+parameters:
+  kernel.secret: TESTSecret
+
+framework:
+  test: true
+  secret: TESTSecret
+  # router:
+  #   resource: "%kernel.project_dir%/src/Resources/config/routing.yaml"
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true

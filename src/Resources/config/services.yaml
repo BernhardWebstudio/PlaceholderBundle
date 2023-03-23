@@ -47,3 +47,5 @@ services:
         public: true
         arguments:
            $placeholderProvider: '@bewe_placeholder.provider'
+        calls:
+        - [setContainer, ["@service_container"]]
