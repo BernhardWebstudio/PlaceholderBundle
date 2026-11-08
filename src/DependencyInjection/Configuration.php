@@ -10,7 +10,7 @@ class Configuration implements ConfigurationInterface
 
     const ITERATIONS_DEFAULT = 5;
 
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('bewe_placeholder');
 

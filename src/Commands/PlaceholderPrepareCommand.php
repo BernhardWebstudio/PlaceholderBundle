@@ -14,13 +14,13 @@ class PlaceholderPrepareCommand extends Command
 
     protected $provider;
 
-    public function __construct(PlaceholderProviderService $provider = null)
+    public function __construct(?PlaceholderProviderService $provider = null)
     {
         $this->provider = $provider;
         parent::__construct();
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             // the name of the command (the part after "bin/console")
@@ -36,10 +36,13 @@ class PlaceholderPrepareCommand extends Command
             ->setHelp('This command creates the placeholders for all the images in your configured load_paths');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if ($this->provider === null) {
-            throw new Exception("The Placeholder Provider Service was not automatically injected. You have probably misconfigured the DI-container.");
+            throw new Exception(
+                "The Placeholder Provider Service was not automatically injected."
+                . " You have probably misconfigured the DI-container."
+            );
         }
 
         $dry = $input->getOption('dry');
@@ -53,7 +56,6 @@ class PlaceholderPrepareCommand extends Command
         }
 
         if (count($this->provider->getLoadPaths()) > 0) {
-
             $finder->files();
             // loop the images to be generated inside
             foreach ($finder as $image) {
@@ -61,8 +63,7 @@ class PlaceholderPrepareCommand extends Command
                 $outputPath = $this->provider->getOutputPath($inputPath);
                 // only output if not already done in another session
                 // TODO: accept ignore_mtime in parameters too
-                if (
-                    !\file_exists($outputPath)
+                if (!\file_exists($outputPath)
                     || (!$input->getOption('ignore-mtime') && filemtime($inputPath) > filemtime($outputPath))
                 ) {
                     if (!$dry) {
@@ -77,7 +78,7 @@ class PlaceholderPrepareCommand extends Command
                             $output->writeln(sprintf('%s created from %s because %s.', $path, $inputPath, $reason));
                             assert($path === $outputPath);
                         } catch (\Exception $e) {
-                            $output->writeln($path . ' failed to be created. Error message: "' . $e->getMessage() . '".');
+                            $output->writeln(sprintf('%s failed to be created. Error: "%s".', $path, $e->getMessage()));
                         }
                     } else {
                         // do output image path before and after

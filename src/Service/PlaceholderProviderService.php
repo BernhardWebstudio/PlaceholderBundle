@@ -26,7 +26,7 @@ class PlaceholderProviderService
     public function __construct(
         PlaceholderGeneratorInterface $generator,
         array $loadPaths = array(),
-        string $outputPath = null,
+        ?string $outputPath = null,
         $ignoreMtime = false
     ) {
         $this->generator = $generator;

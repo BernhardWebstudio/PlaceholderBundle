@@ -15,6 +15,7 @@ use BernhardWebstudio\PlaceholderBundle\Service\PlaceholderProviderService;
 /**
  * @Route(name="bewe_")
  */
+#[Route(name: 'bewe_')]
 class PlaceholderProviderController extends AbstractController
 {
 

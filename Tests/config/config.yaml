@@ -4,6 +4,10 @@ parameters:
 framework:
   test: true
   secret: TESTSecret
+  http_method_override: false
+  handle_all_throwables: true
+  php_errors:
+    log: true
   # router:
   #   resource: "%kernel.project_dir%/src/Resources/config/routing.yaml"
 

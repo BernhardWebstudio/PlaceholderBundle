@@ -13,7 +13,7 @@ class PlaceholderExtension extends \Twig\Extension\AbstractExtension
         $this->placeholderProvider = $provider;
     }
 
-    public function getFilters()
+    public function getFilters(): array
     {
         return array(
             new \Twig\TwigFilter('placeholder', array($this, 'getPlaceholder'))

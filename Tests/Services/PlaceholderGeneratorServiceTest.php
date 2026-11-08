@@ -64,7 +64,7 @@ class PlaceholderGeneratorServiceTest extends TestCase
         $this->isGenerated($generator);
     }
 
-    public function isGenerated(PlaceholderGeneratorInterface $generator = null)
+    public function isGenerated(?PlaceholderGeneratorInterface $generator = null)
     {
         if ($generator) {
             $out = PlaceholderTest::TEST_IMAGE_OUTPUT . $generator->getOutputExtension();

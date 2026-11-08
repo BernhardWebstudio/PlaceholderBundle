@@ -24,9 +24,17 @@ class SqipPlaceholderGenerator extends AbstractNodeExecGenerator
      */
     public function generate($input, $output)
     {
-        $process = new Process(
-            array($this->node_bin, $this->bin, '-i', $input, '-p', 'primitive', '-p', 'blur', '-p', 'svgo', '-b', $this->blur, '-o', $output, '--parseable-output')
-        );
+        $process = new Process([
+            $this->node_bin,
+            $this->bin,
+            '-i', $input,
+            '-p', 'primitive',
+            '-p', 'blur',
+            '-p', 'svgo',
+            '-b', $this->blur,
+            '-o', $output,
+            '--parseable-output'
+        ]);
         $process->mustRun();
         return $process->getOutput();
     }
